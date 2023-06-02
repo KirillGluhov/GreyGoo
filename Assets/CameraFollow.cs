@@ -4,13 +4,28 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private GameObject _object;
-    [SerializeField] private Vector3 _distanceFromObject;
-    private void LateUpdate()
+    public Transform player;
+    public float cameraDistance = 5f;
+    public float cameraHeight = 2f;
+    public float rotationSpeed = 5f;
+
+    private Vector3 offset;
+
+    void Start()
     {
-        Vector3 positionToGo = _object.transform.position + _distanceFromObject;
-        Vector3 smoothPosition = Vector3.Lerp(a: transform.position, b: positionToGo, t: 0.125F);
-        transform.position = smoothPosition;
-        transform.LookAt(_object.transform.position);
+        offset = new Vector3(0f, cameraHeight, -cameraDistance);
+    }
+
+    void LateUpdate()
+    {
+        // Перемещение камеры за игроком
+        transform.position = player.position + offset;
+
+        // Поворот камеры в соответствии с поворотом игрока
+        transform.LookAt(player.position);
+
+        // Отслеживание ввода для поворота игрока
+        float rotationInput = Input.GetAxis("Horizontal");
+        player.Rotate(Vector3.up * rotationInput * rotationSpeed);
     }
 }
