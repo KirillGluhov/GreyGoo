@@ -5,8 +5,8 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform player;
-    public float cameraDistance = 5f;
-    public float cameraHeight = 2f;
+    public float cameraDistance = 1f;
+    public float cameraHeight = 1f;
     public float rotationSpeed = 5f;
 
     private Vector3 offset;
