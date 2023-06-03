@@ -8,6 +8,7 @@ public class CreationWithShooms : MonoBehaviour
 {
     public GameObject blockPrefabFirst;
     public GameObject blockPrefabSecond;
+    public int heightOfCentrePlits;
 
     public GameObject Muskrat;
     public GameObject Colobus;
@@ -124,9 +125,7 @@ public class CreationWithShooms : MonoBehaviour
             {
                 heightMap[x, y] += 0.4F;
                 heightMap[x, y] *= 50;
-                Console.WriteLine(heightMap[x, y] + " ");
             }
-            Console.WriteLine();
 
         }
 
@@ -147,6 +146,7 @@ public class CreationWithShooms : MonoBehaviour
 
                 if (i == 0 & j == 0)
                 {
+                    heightOfCentrePlits = h;
                     GameObject.Find("Goo").transform.position = new Vector3(0, (h+1) * 0.0625F, 0);
                 }
                 else if ((float)newRandom.NextDouble() > 0.9)
@@ -186,6 +186,10 @@ public class CreationWithShooms : MonoBehaviour
 
     void Update()
     {
-        
+        if (GameObject.Find("Goo").transform.position.y < -10)
+        {
+            GameObject.Find("Goo").transform.rotation = Quaternion.LookRotation(new Vector3(0,0,0) );
+            GameObject.Find("Goo").transform.position = new Vector3(0, (heightOfCentrePlits + 2) * 0.0625F, 0);
+        }
     }
 }
