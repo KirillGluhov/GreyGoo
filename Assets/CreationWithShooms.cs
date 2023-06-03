@@ -8,6 +8,13 @@ public class CreationWithShooms : MonoBehaviour
 {
     public GameObject blockPrefabFirst;
     public GameObject blockPrefabSecond;
+
+    public GameObject Muskrat;
+    public GameObject Colobus;
+    public GameObject Gecko;
+    public GameObject Purdu;
+    public GameObject Sparrow;
+    public GameObject Taipan;
     public class DiamondSquareAlgorithm
     {
         private int size;
@@ -105,8 +112,8 @@ public class CreationWithShooms : MonoBehaviour
     void Start()
     {
         int size = 17;
-        System.Random random = new System.Random();
-        float roughness = (float)random.NextDouble();
+        System.Random newRandom = new System.Random();
+        float roughness = (float)newRandom.NextDouble();
 
         DiamondSquareAlgorithm diamondSquare = new DiamondSquareAlgorithm(size);
         float[,] heightMap = diamondSquare.GenerateHeightMap(roughness);
@@ -141,6 +148,35 @@ public class CreationWithShooms : MonoBehaviour
                 if (i == 0 & j == 0)
                 {
                     GameObject.Find("Goo").transform.position = new Vector3(0, (h+1) * 0.0625F, 0);
+                }
+                else if ((float)newRandom.NextDouble() > 0.9)
+                {
+                    float chooseAnimal = UnityEngine.Random.Range(0, 6);
+
+                    if (chooseAnimal < 1)
+                    {
+                        GameObject newMuskrat = Instantiate(Muskrat, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    }
+                    else if (chooseAnimal < 2)
+                    {
+                        GameObject newColobus = Instantiate(Colobus, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    }
+                    else if (chooseAnimal < 3)
+                    {
+                        GameObject newGecko = Instantiate(Gecko, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    }
+                    else if (chooseAnimal < 4)
+                    {
+                        GameObject newPurdu = Instantiate(Purdu, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    }
+                    else if (chooseAnimal < 5)
+                    {
+                        GameObject newSparrow = Instantiate(Sparrow, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    }
+                    else if (chooseAnimal < 6)
+                    {
+                        GameObject newTaipan = Instantiate(Taipan, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    }
                 }
 
             }
