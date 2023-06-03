@@ -138,6 +138,11 @@ public class CreationWithShooms : MonoBehaviour
                 Vector3 positionSecond = new Vector3(j, h * 0.0625F, i);
                 GameObject blockSecond = Instantiate(blockPrefabSecond, positionSecond, Quaternion.identity);
 
+                if (i == 0 & j == 0)
+                {
+                    GameObject.Find("Goo").transform.position = new Vector3(0, (h+1) * 0.0625F, 0);
+                }
+
             }
         }
 
