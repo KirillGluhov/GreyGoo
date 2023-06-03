@@ -105,7 +105,8 @@ public class CreationWithShooms : MonoBehaviour
     void Start()
     {
         int size = 17;
-        float roughness = 0.8f;
+        System.Random random = new System.Random();
+        float roughness = (float)random.NextDouble();
 
         DiamondSquareAlgorithm diamondSquare = new DiamondSquareAlgorithm(size);
         float[,] heightMap = diamondSquare.GenerateHeightMap(roughness);
