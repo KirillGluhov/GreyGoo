@@ -8,14 +8,6 @@ public class CreationWithShooms : MonoBehaviour
 {
     public GameObject blockPrefabFirst;
     public GameObject blockPrefabSecond;
-    public int heightOfCentrePlits;
-
-    public GameObject Muskrat;
-    public GameObject Colobus;
-    public GameObject Gecko;
-    public GameObject Purdu;
-    public GameObject Sparrow;
-    public GameObject Taipan;
     public class DiamondSquareAlgorithm
     {
         private int size;
@@ -113,8 +105,8 @@ public class CreationWithShooms : MonoBehaviour
     void Start()
     {
         int size = 17;
-        System.Random newRandom = new System.Random();
-        float roughness = (float)newRandom.NextDouble();
+        System.Random random = new System.Random();
+        float roughness = (float)random.NextDouble();
 
         DiamondSquareAlgorithm diamondSquare = new DiamondSquareAlgorithm(size);
         float[,] heightMap = diamondSquare.GenerateHeightMap(roughness);
@@ -125,7 +117,9 @@ public class CreationWithShooms : MonoBehaviour
             {
                 heightMap[x, y] += 0.4F;
                 heightMap[x, y] *= 50;
+                Console.WriteLine(heightMap[x, y] + " ");
             }
+            Console.WriteLine();
 
         }
 
@@ -146,37 +140,7 @@ public class CreationWithShooms : MonoBehaviour
 
                 if (i == 0 & j == 0)
                 {
-                    heightOfCentrePlits = h;
                     GameObject.Find("Goo").transform.position = new Vector3(0, (h+1) * 0.0625F, 0);
-                }
-                else if ((float)newRandom.NextDouble() > 0.9)
-                {
-                    float chooseAnimal = UnityEngine.Random.Range(0, 6);
-
-                    if (chooseAnimal < 1)
-                    {
-                        GameObject newMuskrat = Instantiate(Muskrat, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 2)
-                    {
-                        GameObject newColobus = Instantiate(Colobus, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 3)
-                    {
-                        GameObject newGecko = Instantiate(Gecko, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 4)
-                    {
-                        GameObject newPurdu = Instantiate(Purdu, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 5)
-                    {
-                        GameObject newSparrow = Instantiate(Sparrow, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 6)
-                    {
-                        GameObject newTaipan = Instantiate(Taipan, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
                 }
 
             }
@@ -186,10 +150,6 @@ public class CreationWithShooms : MonoBehaviour
 
     void Update()
     {
-        if (GameObject.Find("Goo").transform.position.y < -10)
-        {
-            GameObject.Find("Goo").transform.rotation = Quaternion.LookRotation(new Vector3(0,0,0) );
-            GameObject.Find("Goo").transform.position = new Vector3(0, (heightOfCentrePlits + 2) * 0.0625F, 0);
-        }
+        
     }
 }
