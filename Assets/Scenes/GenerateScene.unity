@@ -142,13 +142,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockPrefabFirst: {fileID: 1026521865303166920, guid: 0c7be494e4e55da4c8f339999f626f46, type: 3}
   blockPrefabSecond: {fileID: 1085392917260781410, guid: 8956fe9205df0ec4391661fd194fc64e, type: 3}
-  heightOfCentrePlits: 0
-  Muskrat: {fileID: 4950779065795438720, guid: 8cb75dc2fdd63734988b8358f1314d25, type: 3}
-  Colobus: {fileID: 6182162820492919152, guid: 84b7c8441f160174fa5c6f94cf397f0a, type: 3}
-  Gecko: {fileID: 6842458599697738422, guid: cefda5744f2acb54d8f08973a10bee1e, type: 3}
-  Purdu: {fileID: 5279811246306103102, guid: 252ba5fa5d8167e42af72cf97baa830e, type: 3}
-  Sparrow: {fileID: 6788538757290762323, guid: ad4137f595ec8e2449cacca9df7d3735, type: 3}
-  Taipan: {fileID: 4807929556901506227, guid: 5b5c678f31981e34f9122b87217da1ac, type: 3}
 --- !u!1 &483682826
 GameObject:
   m_ObjectHideFlags: 0
