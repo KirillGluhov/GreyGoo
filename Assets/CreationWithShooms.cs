@@ -131,7 +131,7 @@ public class CreationWithShooms : MonoBehaviour
 
         }
 
-        for (int i = -(size/2); i < size - (size/2); i++)
+        for (int i = -(size / 2); i < size - (size / 2); i++)
         {
             for (int j = -(size / 2); j < size - (size / 2); j++)
             {
@@ -139,7 +139,7 @@ public class CreationWithShooms : MonoBehaviour
                 for (int k = 0; k < heightMap[i + (size / 2), j + (size / 2)]; k++)
                 {
                     Vector3 position = new Vector3(j, k * 0.0625F, i);
-                    h = k+1;
+                    h = k + 1;
                     GameObject block = Instantiate(blockPrefabFirst, position, Quaternion.identity);
                 }
 
@@ -149,7 +149,7 @@ public class CreationWithShooms : MonoBehaviour
                 if (i == 0 & j == 0)
                 {
                     heightOfCentrePlits = h;
-                    GameObject.Find("Goo").transform.position = new Vector3(0, (h+1) * 0.0625F, 0);
+                    GameObject.Find("Goo").transform.position = new Vector3(0, (h + 1) * 0.0625F, 0);
                 }
                 else if ((float)newRandom.NextDouble() > 0.9)
                 {
@@ -190,7 +190,7 @@ public class CreationWithShooms : MonoBehaviour
     {
         if (GameObject.Find("Goo").transform.position.y < -10)
         {
-            GameObject.Find("Goo").transform.rotation = Quaternion.LookRotation(new Vector3(0,0,0) );
+            GameObject.Find("Goo").transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 0));
             GameObject.Find("Goo").transform.position = new Vector3(0, (heightOfCentrePlits + 2) * 0.0625F, 0);
         }
 

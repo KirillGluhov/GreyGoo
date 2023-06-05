@@ -18,13 +18,10 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        // Перемещение камеры за игроком
         transform.position = player.position + offset;
 
-        // Поворот камеры в соответствии с поворотом игрока
         transform.LookAt(player.position);
 
-        // Отслеживание ввода для поворота игрока
         float rotationInput = Input.GetAxis("Horizontal");
         player.Rotate(Vector3.up * rotationInput * rotationSpeed);
     }
