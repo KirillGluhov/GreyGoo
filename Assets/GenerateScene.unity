@@ -150,6 +150,10 @@ MonoBehaviour:
   Purdu: {fileID: 189538338841434207, guid: b0499f01b48e8e74c9359e8b77a594e8, type: 3}
   Sparrow: {fileID: 6788538757290762323, guid: ed17e6aedaac82842a66766cce36259d, type: 3}
   Taipan: {fileID: 6563615722677240677, guid: 3b1c0228e0eb4344a9d830ecb75212b2, type: 3}
+  Oak: {fileID: 191266, guid: c44bd9bdc114d4a60932c0087d9d1732, type: 3}
+  Palm: {fileID: 188006, guid: c6b7fb383a3534b039692b5485b6e739, type: 3}
+  Poplar: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
+  Fir: {fileID: 192044, guid: 19682540d8a014522a319b1cf788aee2, type: 3}
 --- !u!1001 &348933596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -395,7 +399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826358985}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

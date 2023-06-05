@@ -18,6 +18,11 @@ public class CreationWithShooms : MonoBehaviour
     public GameObject Purdu;
     public GameObject Sparrow;
     public GameObject Taipan;
+
+    public GameObject Oak;
+    public GameObject Palm;
+    public GameObject Poplar;
+    public GameObject Fir;
     public class DiamondSquareAlgorithm
     {
         private int size;
@@ -153,7 +158,7 @@ public class CreationWithShooms : MonoBehaviour
                 }
                 else if ((float)newRandom.NextDouble() > 0.9)
                 {
-                    float chooseAnimal = UnityEngine.Random.Range(0, 6);
+                    float chooseAnimal = UnityEngine.Random.Range(0, 10);
 
                     if (chooseAnimal < 1)
                     {
@@ -179,11 +184,25 @@ public class CreationWithShooms : MonoBehaviour
                     {
                         GameObject newTaipan = Instantiate(Taipan, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
                     }
+                    else if (chooseAnimal < 7)
+                    {
+                        GameObject newOak = Instantiate(Oak, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    }
+                    else if (chooseAnimal < 8)
+                    {
+                        GameObject newPalm = Instantiate(Palm, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    }
+                    else if (chooseAnimal < 9)
+                    {
+                        GameObject newPoplar = Instantiate(Poplar, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    }
+                    else if (chooseAnimal < 10)
+                    {
+                        GameObject newFir = Instantiate(Fir, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    }
                 }
-
             }
         }
-
     }
 
     void Update()
