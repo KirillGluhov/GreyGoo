@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class Movement : MonoBehaviour
 {
     public float speed = 0.5f;
     public float jumpForce = 5f;
     private bool isJumping = false;
     private Rigidbody playerRigidbody;
+    private Camera mainCamera;
 
     private void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+        mainCamera = Camera.main;
     }
 
     private void Update()
@@ -18,7 +21,12 @@ public class Movement : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical) * speed;
+        Vector3 cameraForward = mainCamera.transform.forward;
+        cameraForward.y = 0;
+        cameraForward = cameraForward.normalized;
+
+ 
+        Vector3 movement = (cameraForward * moveVertical + mainCamera.transform.right * moveHorizontal) * speed;
 
         playerRigidbody.AddForce(movement);
 
