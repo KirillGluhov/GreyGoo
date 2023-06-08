@@ -149,20 +149,14 @@ public class CreationWithShooms : MonoBehaviour
         return heightMap;
     }
 
-    public void generateMobsTreesGooAndWater(int i, int j, int h, System.Random newRandom, float[,] heightMap)
+    public void generateMobsTreesAndGoo(int i, int j, int h, System.Random newRandom, float[,] heightMap)
     {
         if (i == 0 && j == 0)
         {
             heightOfCentrePlits = h;
             GameObject.Find("Goo").transform.position = new Vector3(0, (h + 1) * 0.0625F, 0);
         }
-
-        if (h < 16)
-        {
-            GameObject newWater = Instantiate(Water, new Vector3(j, 16 * 0.0625F, i), Quaternion.identity);
-            newWater.transform.Rotate(90, 0, 0);
-        }
-        else if ((float)newRandom.NextDouble() > 0.9)
+        else if ((float)newRandom.NextDouble() > 0.9 && h >= 16)
         {
             float chooseAnimal = UnityEngine.Random.Range(0, 10);
 
@@ -232,7 +226,13 @@ public class CreationWithShooms : MonoBehaviour
                 Vector3 positionSecond = new Vector3(j, h * 0.0625F, i);
                 GameObject blockSecond = Instantiate(blockPrefabSecond, positionSecond, Quaternion.identity);
 
-                generateMobsTreesGooAndWater(i, j, h, newRandom, heightMap);
+                if (h < 16)
+                {
+                    GameObject newWater = Instantiate(Water, new Vector3(j, 16 * 0.0625F, i), Quaternion.identity);
+                    newWater.transform.Rotate(90, 0, 0);
+                }
+
+                generateMobsTreesAndGoo(i, j, h, newRandom, heightMap);
                 
             }
         }

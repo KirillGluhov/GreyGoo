@@ -150,10 +150,10 @@ MonoBehaviour:
   Purdu: {fileID: 189538338841434207, guid: b0499f01b48e8e74c9359e8b77a594e8, type: 3}
   Sparrow: {fileID: 6788538757290762323, guid: ed17e6aedaac82842a66766cce36259d, type: 3}
   Taipan: {fileID: 6563615722677240677, guid: 3b1c0228e0eb4344a9d830ecb75212b2, type: 3}
-  Oak: {fileID: 191266, guid: c44bd9bdc114d4a60932c0087d9d1732, type: 3}
-  Palm: {fileID: 188006, guid: c6b7fb383a3534b039692b5485b6e739, type: 3}
-  Poplar: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
-  Fir: {fileID: 192044, guid: 19682540d8a014522a319b1cf788aee2, type: 3}
+  Oak: {fileID: 3266174145650590823, guid: fcd7147a4e58b1a47b4d117af23587a8, type: 3}
+  Palm: {fileID: 5353627644786890543, guid: 022065abae95bf4458ae8a8998458388, type: 3}
+  Poplar: {fileID: 4627597929421253259, guid: 6f63e3796dd0bc34f8a43086bf584b5a, type: 3}
+  Fir: {fileID: 8945503330230235839, guid: 255f6234994d94e41ab75007977161e4, type: 3}
   Water: {fileID: 3862123034570405698, guid: ad289f954a0dbaa4e8664f82e5bd376e, type: 3}
 --- !u!1001 &348933596
 PrefabInstance:
