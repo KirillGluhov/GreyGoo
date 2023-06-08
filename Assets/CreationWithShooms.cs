@@ -23,6 +23,8 @@ public class CreationWithShooms : MonoBehaviour
     public GameObject Palm;
     public GameObject Poplar;
     public GameObject Fir;
+
+    public GameObject Water;
     public class DiamondSquareAlgorithm
     {
         private int size;
@@ -117,14 +119,10 @@ public class CreationWithShooms : MonoBehaviour
             return ((float)random.NextDouble() - 0.5f) * scale;
         }
     }
-    void Start()
-    {
-        int size = 17;
-        System.Random newRandom = new System.Random();
-        float roughness = (float)newRandom.NextDouble();
 
-        DiamondSquareAlgorithm diamondSquare = new DiamondSquareAlgorithm(size);
-        float[,] heightMap = diamondSquare.GenerateHeightMap(roughness);
+    public float[,] improveHeightMap(int size, float[,] heightMap)
+    {
+        int min = 0;
 
         for (int y = 0; y < size; y++)
         {
@@ -132,9 +130,92 @@ public class CreationWithShooms : MonoBehaviour
             {
                 heightMap[x, y] += 0.4F;
                 heightMap[x, y] *= 50;
+                heightMap[x, y] = (int)heightMap[x, y];
+
+                min = Math.Min(min, (int)heightMap[x, y]);
             }
 
         }
+
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < size; x++)
+            {
+                heightMap[x, y] -= min;
+            }
+
+        }
+
+        return heightMap;
+    }
+
+    public void generateMobsTreesGooAndWater(int i, int j, int h, System.Random newRandom, float[,] heightMap)
+    {
+        if (i == 0 && j == 0)
+        {
+            heightOfCentrePlits = h;
+            GameObject.Find("Goo").transform.position = new Vector3(0, (h + 1) * 0.0625F, 0);
+        }
+
+        if (h < 16)
+        {
+            GameObject newWater = Instantiate(Water, new Vector3(j, 16 * 0.0625F, i), Quaternion.identity);
+            newWater.transform.Rotate(90, 0, 0);
+        }
+        else if ((float)newRandom.NextDouble() > 0.9)
+        {
+            float chooseAnimal = UnityEngine.Random.Range(0, 10);
+
+            if (chooseAnimal < 1)
+            {
+                GameObject newMuskrat = Instantiate(Muskrat, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+            }
+            else if (chooseAnimal < 2)
+            {
+                GameObject newColobus = Instantiate(Colobus, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+            }
+            else if (chooseAnimal < 3)
+            {
+                GameObject newGecko = Instantiate(Gecko, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+            }
+            else if (chooseAnimal < 4)
+            {
+                GameObject newPurdu = Instantiate(Purdu, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+            }
+            else if (chooseAnimal < 5)
+            {
+                GameObject newSparrow = Instantiate(Sparrow, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+            }
+            else if (chooseAnimal < 6)
+            {
+                GameObject newTaipan = Instantiate(Taipan, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+            }
+            else if (chooseAnimal < 7)
+            {
+                GameObject newOak = Instantiate(Oak, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+            }
+            else if (chooseAnimal < 8)
+            {
+                GameObject newPalm = Instantiate(Palm, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+            }
+            else if (chooseAnimal < 9)
+            {
+                GameObject newPoplar = Instantiate(Poplar, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+            }
+            else if (chooseAnimal < 10)
+            {
+                GameObject newFir = Instantiate(Fir, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+            }
+        }
+    }
+    void Start()
+    {
+        int size = 17;
+        System.Random newRandom = new System.Random();
+        float roughness = (float)newRandom.NextDouble();
+
+        DiamondSquareAlgorithm diamondSquare = new DiamondSquareAlgorithm(size);
+        float[,] heightMap = improveHeightMap(size, diamondSquare.GenerateHeightMap(roughness));
 
         for (int i = -(size / 2); i < size - (size / 2); i++)
         {
@@ -151,56 +232,8 @@ public class CreationWithShooms : MonoBehaviour
                 Vector3 positionSecond = new Vector3(j, h * 0.0625F, i);
                 GameObject blockSecond = Instantiate(blockPrefabSecond, positionSecond, Quaternion.identity);
 
-                if (i == 0 & j == 0)
-                {
-                    heightOfCentrePlits = h;
-                    GameObject.Find("Goo").transform.position = new Vector3(0, (h + 1) * 0.0625F, 0);
-                }
-                else if ((float)newRandom.NextDouble() > 0.9)
-                {
-                    float chooseAnimal = UnityEngine.Random.Range(0, 10);
-
-                    if (chooseAnimal < 1)
-                    {
-                        GameObject newMuskrat = Instantiate(Muskrat, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 2)
-                    {
-                        GameObject newColobus = Instantiate(Colobus, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 3)
-                    {
-                        GameObject newGecko = Instantiate(Gecko, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 4)
-                    {
-                        GameObject newPurdu = Instantiate(Purdu, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 5)
-                    {
-                        GameObject newSparrow = Instantiate(Sparrow, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 6)
-                    {
-                        GameObject newTaipan = Instantiate(Taipan, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 7)
-                    {
-                        GameObject newOak = Instantiate(Oak, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 8)
-                    {
-                        GameObject newPalm = Instantiate(Palm, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 9)
-                    {
-                        GameObject newPoplar = Instantiate(Poplar, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                    else if (chooseAnimal < 10)
-                    {
-                        GameObject newFir = Instantiate(Fir, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-                    }
-                }
+                generateMobsTreesGooAndWater(i, j, h, newRandom, heightMap);
+                
             }
         }
     }

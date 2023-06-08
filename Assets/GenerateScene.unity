@@ -154,6 +154,7 @@ MonoBehaviour:
   Palm: {fileID: 188006, guid: c6b7fb383a3534b039692b5485b6e739, type: 3}
   Poplar: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 3}
   Fir: {fileID: 192044, guid: 19682540d8a014522a319b1cf788aee2, type: 3}
+  Water: {fileID: 3862123034570405698, guid: ad289f954a0dbaa4e8664f82e5bd376e, type: 3}
 --- !u!1001 &348933596
 PrefabInstance:
   m_ObjectHideFlags: 0
