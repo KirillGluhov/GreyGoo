@@ -149,56 +149,425 @@ public class CreationWithShooms : MonoBehaviour
         return heightMap;
     }
 
-    public void generateMobsTreesAndGoo(int i, int j, int h, System.Random newRandom, float[,] heightMap)
+    public int[,] createMatrixOfLocationMobsandTrees(float[,] heightMap, int size, System.Random newRandom)
+    {
+        int[,] matrix;
+        matrix = new int[size, size];
+
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if (heightMap[i, j] > 16 && newRandom.NextDouble() > 0.9)
+                {
+                    matrix[i, j] = (int)UnityEngine.Random.Range(0, 10);
+                }
+                else matrix[i, j] = -1;
+                Debug.Log(matrix[i, j] + "\t");
+            }
+            Debug.Log("\n");
+        }
+
+        return matrix;
+    }
+
+    public int[,] improveMatrixWithTreesAndMobs(int size, int[,] matrix)
+    {
+        for (int i = 0; i < size; i++ )
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if (matrix[i, j] > 5)
+                {
+                    switch(matrix[i, j])
+                    {
+                        case 6:
+                            if (i - 1 > 0 && j - 1 > 0)
+                            {
+                                if (matrix[i - 1, j - 1] > 5)
+                                {
+                                    matrix[i - 1, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size && j + 1 < size)
+                            {
+                                if (matrix[i + 1, j + 1] > 5)
+                                {
+                                    matrix[i + 1, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i - 1 > 0 && j + 1 < size)
+                            {
+                                if (matrix[i - 1, j + 1] > 5)
+                                {
+                                    matrix[i - 1, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size && j - 1 > 0)
+                            {
+                                if (matrix[i + 1, j - 1] > 5)
+                                {
+                                    matrix[i + 1, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i - 1 > 0)
+                            {
+                                if (matrix[i - 1, j] > 5)
+                                {
+                                    matrix[i - 1, j] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (j - 1 > 0)
+                            {
+                                if (matrix[i, j - 1] > 5)
+                                {
+                                    matrix[i, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size)
+                            {
+                                if (matrix[i + 1, j] > 5)
+                                {
+                                    matrix[i + 1, j] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (j + 1 < size)
+                            {
+                                if (matrix[i, j + 1] > 5)
+                                {
+                                    matrix[i, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i-1 > 0 && j-2>0)
+                            {
+                                if (matrix[i-1, j-2] > 5)
+                                {
+                                    matrix[i-1, j-2] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (j - 2 > 0)
+                            {
+                                if (matrix[i, j - 2] > 5)
+                                {
+                                    matrix[i, j - 2] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size && j - 2 > 0)
+                            {
+                                if (matrix[i + 1, j - 2] > 5)
+                                {
+                                    matrix[i + 1, j - 2] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i - 1 > 0 && j + 2 < size)
+                            {
+                                if (matrix[i - 1, j + 2] > 5)
+                                {
+                                    matrix[i - 1, j + 2] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (j + 2 < size)
+                            {
+                                if (matrix[i, j + 2] > 5)
+                                {
+                                    matrix[i, j + 2] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size && j + 2 < size)
+                            {
+                                if (matrix[i + 1, j + 2] > 5)
+                                {
+                                    matrix[i + 1, j + 2] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+                            break;
+                        case 7:
+                            if (i - 1 > 0 && j - 1 > 0)
+                            {
+                                if (matrix[i - 1, j - 1] > 5)
+                                {
+                                    matrix[i - 1, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size && j + 1 < size)
+                            {
+                                if (matrix[i + 1, j + 1] > 5)
+                                {
+                                    matrix[i + 1, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i - 1 > 0 && j + 1 < size)
+                            {
+                                if (matrix[i - 1, j + 1] > 5)
+                                {
+                                    matrix[i - 1, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size && j - 1 > 0)
+                            {
+                                if (matrix[i + 1, j - 1] > 5)
+                                {
+                                    matrix[i + 1, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i - 1 > 0)
+                            {
+                                if (matrix[i - 1, j] > 5)
+                                {
+                                    matrix[i - 1, j] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (j - 1 > 0)
+                            {
+                                if (matrix[i, j - 1] > 5)
+                                {
+                                    matrix[i, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size)
+                            {
+                                if (matrix[i + 1, j] > 5)
+                                {
+                                    matrix[i + 1, j] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (j + 1 < size)
+                            {
+                                if (matrix[i, j + 1] > 5)
+                                {
+                                    matrix[i, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 2 < size && j - 1 > 0)
+                            {
+                                if (matrix[i+2, j-1] > 5)
+                                {
+                                    matrix[i+2, j-1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 2 < size)
+                            {
+                                if (matrix[i + 2, j] > 5)
+                                {
+                                    matrix[i + 2, j] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 2 < size && j + 1 < size)
+                            {
+                                if (matrix[i + 2, j + 1] > 5)
+                                {
+                                    matrix[i + 2, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            break;
+                        case 8:
+
+                            if (i-1 > 0 && j-1>0)
+                            {
+                                if (matrix[i-1,j-1] > 5)
+                                {
+                                    matrix[i - 1, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size && j + 1  < size)
+                            {
+                                if (matrix[i + 1, j + 1] > 5)
+                                {
+                                    matrix[i + 1, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i - 1 > 0 && j + 1 < size)
+                            {
+                                if (matrix[i - 1, j + 1] > 5)
+                                {
+                                    matrix[i - 1, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size && j - 1 > 0)
+                            {
+                                if (matrix[i + 1, j - 1] > 5)
+                                {
+                                    matrix[i + 1, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i-1>0)
+                            {
+                                if (matrix[i - 1, j] > 5)
+                                {
+                                    matrix[i - 1, j] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (j-1>0)
+                            {
+                                if (matrix[i, j-1] > 5)
+                                {
+                                    matrix[i, j-1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size)
+                            {
+                                if (matrix[i + 1, j] > 5)
+                                {
+                                    matrix[i + 1, j] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (j + 1 < size)
+                            {
+                                if (matrix[i, j + 1] > 5)
+                                {
+                                    matrix[i, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+                            break;
+                        case 9:
+                            if (i - 1 > 0 && j - 1 > 0)
+                            {
+                                if (matrix[i - 1, j - 1] > 5)
+                                {
+                                    matrix[i - 1, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size && j + 1 < size)
+                            {
+                                if (matrix[i + 1, j + 1] > 5)
+                                {
+                                    matrix[i + 1, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i - 1 > 0 && j + 1 < size)
+                            {
+                                if (matrix[i - 1, j + 1] > 5)
+                                {
+                                    matrix[i - 1, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size && j - 1 > 0)
+                            {
+                                if (matrix[i + 1, j - 1] > 5)
+                                {
+                                    matrix[i + 1, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i - 1 > 0)
+                            {
+                                if (matrix[i - 1, j] > 5)
+                                {
+                                    matrix[i - 1, j] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (j - 1 > 0)
+                            {
+                                if (matrix[i, j - 1] > 5)
+                                {
+                                    matrix[i, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (i + 1 < size)
+                            {
+                                if (matrix[i + 1, j] > 5)
+                                {
+                                    matrix[i + 1, j] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+
+                            if (j + 1 < size)
+                            {
+                                if (matrix[i, j + 1] > 5)
+                                {
+                                    matrix[i, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+        return matrix;
+    }
+
+    public void generateMobsTreesAndGoo(int i, int j, int h, int[,] matrix, int size)
     {
         if (i == 0 && j == 0)
         {
             heightOfCentrePlits = h;
             GameObject.Find("Goo").transform.position = new Vector3(0, (h + 1) * 0.0625F, 0);
         }
-        else if ((float)newRandom.NextDouble() > 0.9 && h >= 16)
+        else
         {
-            float chooseAnimal = UnityEngine.Random.Range(0, 10);
+            switch(matrix[i + size/2, j + size/2])
+            {
+                case 0:
+                    GameObject newMuskrat = Instantiate(Muskrat, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    break;
+                case 1:
+                    GameObject newColobus = Instantiate(Colobus, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    break;
+                case 2:
+                    GameObject newGecko = Instantiate(Gecko, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    break;
+                case 3:
+                    GameObject newPurdu = Instantiate(Purdu, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    break;
+                case 4:
+                    GameObject newSparrow = Instantiate(Sparrow, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    break;
+                case 5:
+                    GameObject newTaipan = Instantiate(Taipan, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    break;
+                case 6:
+                    GameObject newOak = Instantiate(Oak, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    break;
+                case 7:
+                    GameObject newPalm = Instantiate(Palm, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    break;
+                case 8:
+                    GameObject newPoplar = Instantiate(Poplar, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    break;
+                case 9:
+                    GameObject newFir = Instantiate(Fir, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
+                    break;
+                default:
+                    break;
 
-            if (chooseAnimal < 1)
-            {
-                GameObject newMuskrat = Instantiate(Muskrat, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-            }
-            else if (chooseAnimal < 2)
-            {
-                GameObject newColobus = Instantiate(Colobus, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-            }
-            else if (chooseAnimal < 3)
-            {
-                GameObject newGecko = Instantiate(Gecko, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-            }
-            else if (chooseAnimal < 4)
-            {
-                GameObject newPurdu = Instantiate(Purdu, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-            }
-            else if (chooseAnimal < 5)
-            {
-                GameObject newSparrow = Instantiate(Sparrow, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-            }
-            else if (chooseAnimal < 6)
-            {
-                GameObject newTaipan = Instantiate(Taipan, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-            }
-            else if (chooseAnimal < 7)
-            {
-                GameObject newOak = Instantiate(Oak, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-            }
-            else if (chooseAnimal < 8)
-            {
-                GameObject newPalm = Instantiate(Palm, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-            }
-            else if (chooseAnimal < 9)
-            {
-                GameObject newPoplar = Instantiate(Poplar, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
-            }
-            else if (chooseAnimal < 10)
-            {
-                GameObject newFir = Instantiate(Fir, new Vector3(j, h * 0.0625F, i), Quaternion.identity);
             }
         }
     }
@@ -210,6 +579,7 @@ public class CreationWithShooms : MonoBehaviour
 
         DiamondSquareAlgorithm diamondSquare = new DiamondSquareAlgorithm(size);
         float[,] heightMap = improveHeightMap(size, diamondSquare.GenerateHeightMap(roughness));
+        int[,] probablyTreesAndMobs = improveMatrixWithTreesAndMobs(size, createMatrixOfLocationMobsandTrees(heightMap, size, newRandom));
 
         for (int i = -(size / 2); i < size - (size / 2); i++)
         {
@@ -232,7 +602,7 @@ public class CreationWithShooms : MonoBehaviour
                     newWater.transform.Rotate(90, 0, 0);
                 }
 
-                generateMobsTreesAndGoo(i, j, h, newRandom, heightMap);
+                generateMobsTreesAndGoo(i, j, h, probablyTreesAndMobs, size);
                 
             }
         }
