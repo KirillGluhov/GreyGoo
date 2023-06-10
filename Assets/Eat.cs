@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class Eat : MonoBehaviour
 {
     public float levelOfHungry = 10f;
+    private float radius = 1f;
+    private int numberOfKilled = 0;
     private Rigidbody playerRigidbody;
     public GameObject hungryText;
     void Start()
@@ -32,6 +34,8 @@ public class Eat : MonoBehaviour
         {
             playerRigidbody.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 0));
             playerRigidbody.position = new Vector3(0, (CreationWithShooms.heightOfCentrePlits + 2) * 0.0625F, 0);
+            playerRigidbody.transform.localScale = new Vector3(1f, 1f, 1f);
+            radius = 1f;
             levelOfHungry = 100f;
         }
     }
@@ -42,6 +46,10 @@ public class Eat : MonoBehaviour
         {
             Destroy(collision.gameObject);
             levelOfHungry += 20f;
+            numberOfKilled++;
+
+            radius = Mathf.Pow(1.0f+((1.0f / 5.0f)* numberOfKilled), 1.0f / 3.0f);
+            playerRigidbody.transform.localScale = new Vector3(radius, radius, radius);
         }
     }
 }
