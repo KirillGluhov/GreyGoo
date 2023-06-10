@@ -9,7 +9,7 @@ public class CreationWithShooms : MonoBehaviour
 {
     public GameObject blockPrefabFirst;
     public GameObject blockPrefabSecond;
-    public int heightOfCentrePlits;
+    public static int heightOfCentrePlits;
     public string nextScene;
 
     public GameObject Muskrat;
@@ -455,7 +455,7 @@ public class CreationWithShooms : MonoBehaviour
                             {
                                 if (matrix[i - 1, j - 1] > 5)
                                 {
-                                    matrix[i - 1, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                    matrix[i - 1, j - 1] = 11;
                                 }
                             }
 
@@ -463,7 +463,7 @@ public class CreationWithShooms : MonoBehaviour
                             {
                                 if (matrix[i + 1, j + 1] > 5)
                                 {
-                                    matrix[i + 1, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                    matrix[i + 1, j + 1] = 11;
                                 }
                             }
 
@@ -471,7 +471,7 @@ public class CreationWithShooms : MonoBehaviour
                             {
                                 if (matrix[i - 1, j + 1] > 5)
                                 {
-                                    matrix[i - 1, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                    matrix[i - 1, j + 1] = 11;
                                 }
                             }
 
@@ -479,7 +479,7 @@ public class CreationWithShooms : MonoBehaviour
                             {
                                 if (matrix[i + 1, j - 1] > 5)
                                 {
-                                    matrix[i + 1, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                    matrix[i + 1, j - 1] = 11;
                                 }
                             }
 
@@ -487,7 +487,7 @@ public class CreationWithShooms : MonoBehaviour
                             {
                                 if (matrix[i - 1, j] > 5)
                                 {
-                                    matrix[i - 1, j] = (int)UnityEngine.Random.Range(0, 6);
+                                    matrix[i - 1, j] = 11;
                                 }
                             }
 
@@ -495,7 +495,7 @@ public class CreationWithShooms : MonoBehaviour
                             {
                                 if (matrix[i, j - 1] > 5)
                                 {
-                                    matrix[i, j - 1] = (int)UnityEngine.Random.Range(0, 6);
+                                    matrix[i, j - 1] = 11;
                                 }
                             }
 
@@ -503,7 +503,7 @@ public class CreationWithShooms : MonoBehaviour
                             {
                                 if (matrix[i + 1, j] > 5)
                                 {
-                                    matrix[i + 1, j] = (int)UnityEngine.Random.Range(0, 6);
+                                    matrix[i + 1, j] = 11;
                                 }
                             }
 
@@ -511,7 +511,7 @@ public class CreationWithShooms : MonoBehaviour
                             {
                                 if (matrix[i, j + 1] > 5)
                                 {
-                                    matrix[i, j + 1] = (int)UnityEngine.Random.Range(0, 6);
+                                    matrix[i, j + 1] = 11;
                                 }
                             }
                             break;
@@ -524,7 +524,7 @@ public class CreationWithShooms : MonoBehaviour
         return matrix;
     }
 
-    public void generateMobsTreesAndGoo(int i, int j, int h, int[,] matrix, int size)
+    public void generateMobsTreesAndGoo(int i, int j, int h, int[,] matrix, int size, float[,] heightMap)
     {
         if (i == 0 && j == 0)
         {
@@ -602,7 +602,7 @@ public class CreationWithShooms : MonoBehaviour
                     newWater.transform.Rotate(90, 0, 0);
                 }
 
-                generateMobsTreesAndGoo(i, j, h, probablyTreesAndMobs, size);
+                generateMobsTreesAndGoo(i, j, h, probablyTreesAndMobs, size, heightMap);
                 
             }
         }
@@ -610,11 +610,6 @@ public class CreationWithShooms : MonoBehaviour
 
     void Update()
     {
-        if (GameObject.Find("Goo").transform.position.y < -10)
-        {
-            GameObject.Find("Goo").transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 0));
-            GameObject.Find("Goo").transform.position = new Vector3(0, (heightOfCentrePlits + 2) * 0.0625F, 0);
-        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
