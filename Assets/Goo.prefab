@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 7425800837740805154}
   - component: {fileID: 7425800837740805151}
   - component: {fileID: 7425800837740805150}
+  - component: {fileID: 1395102038838377116}
   m_Layer: 0
   m_Name: Goo
   m_TagString: Player
@@ -90,7 +91,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2378692485179039738}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.9873126, z: 0, w: -0.15878873}
   m_LocalPosition: {x: 0, y: 0.1875, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -143,6 +144,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 5
+--- !u!114 &1395102038838377116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2378692485179039738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1286a01bf9d6df469c2affb6f29916a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3241667224628507352
 GameObject:
   m_ObjectHideFlags: 0

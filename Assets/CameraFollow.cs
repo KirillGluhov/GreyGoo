@@ -1,31 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player;
-    public float cameraDistance = 1f;
-    public float cameraHeight = 1f;
-    public float rotationSpeed = 5f;
 
-    private Vector3 offset;
+    public Transform target;
+    public Vector3 offset;
+    public float sensitivity = 3; // чувствительность мышки
+    public float limit = 80; // ограничение вращения по Y
+    public float zoom = 0.25f; // чувствительность при увеличении, колесиком мышки
+    public float zoomMax = 10; // макс. увеличение
+    public float zoomMin = 0.5f; // мин. увеличение
+    private float X, Y;
 
     void Start()
     {
-        offset = new Vector3(0f, cameraHeight, -cameraDistance);
+        limit = Mathf.Abs(limit);
+        if (limit > 90) limit = 90;
+        offset = new Vector3(offset.x, offset.y, -Mathf.Abs(zoomMin));
+        transform.position = target.position + offset;
     }
 
-    void LateUpdate()
+    void Update()
     {
-        // Перемещение камеры за игроком
-        transform.position = player.position + offset;
+        if (Input.GetAxis("Mouse ScrollWheel") > 0) offset.z += zoom;
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0) offset.z -= zoom;
+        offset.z = Mathf.Clamp(offset.z, -Mathf.Abs(zoomMax), -Mathf.Abs(zoomMin));
 
-        // Поворот камеры в соответствии с поворотом игрока
-        transform.LookAt(player.position);
+        X = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivity;
+        Y += Input.GetAxis("Mouse Y") * sensitivity;
+        Y = Mathf.Clamp(Y, -limit, limit);
 
-        // Отслеживание ввода для поворота игрока
-        float rotationInput = Input.GetAxis("Horizontal");
-        player.Rotate(Vector3.up * rotationInput * rotationSpeed);
+        if (Y > 0)
+        {
+            Y = 0;
+        }
+
+        transform.localEulerAngles = new Vector3(-Y, X, 0);
+        transform.position = transform.localRotation * offset + target.position;
     }
 }
