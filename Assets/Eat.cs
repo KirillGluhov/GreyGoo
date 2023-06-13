@@ -44,11 +44,19 @@ public class Eat : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Mob"))
         {
-            Destroy(collision.gameObject);
+            for (int i = 0; i < CreationWithShooms.Mobs.Count; i++)
+            {
+                if (CreationWithShooms.Mobs[i] == collision.gameObject)
+                {
+                    Destroy(collision.gameObject);
+                    break;
+                }
+            }
+
             levelOfHungry += 20f;
             numberOfKilled++;
 
-            radius = Mathf.Pow(1.0f+((1.0f / 5.0f)* numberOfKilled), 1.0f / 3.0f);
+            radius = Mathf.Pow(1.0f+((1.0f/5.0f)* numberOfKilled), 1.0f / 3.0f);
             playerRigidbody.transform.localScale = new Vector3(radius, radius, radius);
         }
     }
