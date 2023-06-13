@@ -890,87 +890,87 @@ public class CreationWithShooms : MonoBehaviour
         bool flagSeventh = true;
         bool flagEigth = true;
 
-        float positionGamerY = GameObject.Find("Goo").transform.position.y;
+        float positionGamerZ = GameObject.Find("Goo").transform.position.z;
         float positionGamerX = GameObject.Find("Goo").transform.position.x;
 
         int numberOfChunkX = ((int)positionGamerX - ((int)positionGamerX % 17)) / 17; // 0
-        int numberOfChunkY = ((int)positionGamerY - ((int)positionGamerY % 17)) / 17; // 0
+        int numberOfChunkZ = ((int)positionGamerZ - ((int)positionGamerZ % 17)) / 17; // 0
 
         int nearX = ((int)(positionGamerX-17) - ((int)(positionGamerX-17) % 17)) / 17; // -1
-        int nearY = ((int)(positionGamerY - 17) - ((int)(positionGamerY - 17) % 17)) / 17;// -1
+        int nearZ = ((int)(positionGamerZ - 17) - ((int)(positionGamerZ - 17) % 17)) / 17;// -1
 
         if (!flagZero)
         {
-            createChunk(numberOfChunkX, numberOfChunkY);
+            createChunk(numberOfChunkX, numberOfChunkZ);
         }
 
-        if (numberOfChunkX - 1 == nearX && numberOfChunkY - 1 == nearY)
+        if (numberOfChunkX - 1 == nearX && numberOfChunkZ - 1 == nearZ)
         {
             if (!flagFirst) 
             {
-                createChunk(numberOfChunkX - 1, numberOfChunkY - 1); 
+                createChunk(numberOfChunkX - 1, numberOfChunkZ - 1); 
                 flagFirst = true;
             }
         }
         else
         {
-            deleteChunk(nearX, nearY);
+            deleteChunk(nearX, nearZ);
             flagFirst = false;
         }
         
-        if (numberOfChunkX + 1 == -nearX &&  numberOfChunkY + 1 == -nearY)
+        if (numberOfChunkX + 1 == -nearX &&  numberOfChunkZ + 1 == -nearZ)
         {
             if (!flagSecond)
             {
-                createChunk(numberOfChunkX + 1, numberOfChunkY + 1);
+                createChunk(numberOfChunkX + 1, numberOfChunkZ + 1);
                 flagSecond = true;
             }
         }
         else
         {
-            deleteChunk(nearX, nearY);
+            deleteChunk(nearX, nearZ);
             flagSecond = false;
         }
 
-        if (numberOfChunkX - 1 == nearX && numberOfChunkY + 1 == -nearY)
+        if (numberOfChunkX - 1 == nearX && numberOfChunkZ + 1 == -nearZ)
         {
             if (!flagThird)
             {
-                createChunk(numberOfChunkX - 1, numberOfChunkY + 1);
+                createChunk(numberOfChunkX - 1, numberOfChunkZ + 1);
                 flagThird = true;
             }
         }
         else
         {
-            deleteChunk(nearX, nearY);
+            deleteChunk(nearX, nearZ);
             flagThird = false;
         }
 
-        if (numberOfChunkX + 1 == -nearX && numberOfChunkY - 1 == nearY)
+        if (numberOfChunkX + 1 == -nearX && numberOfChunkZ - 1 == nearZ)
         {
             if (!flagFourth)
             {
-                createChunk(numberOfChunkX + 1, numberOfChunkY - 1);
+                createChunk(numberOfChunkX + 1, numberOfChunkZ - 1);
                 flagFourth = true;
             }
         }
         else
         {
-            deleteChunk(nearX, nearY);
+            deleteChunk(nearX, nearZ);
             flagFourth = false;
         }
 
-        if (numberOfChunkY - 1 == nearY)
+        if (numberOfChunkZ - 1 == nearZ)
         {
             if (!flagFive)
             {
-                createChunk(numberOfChunkX, numberOfChunkY - 1);
+                createChunk(numberOfChunkX, numberOfChunkZ - 1);
                 flagFive = true;
             } 
         }
         else
         {
-            deleteChunk(nearX, nearY);
+            deleteChunk(nearX, nearZ);
             flagFive = false;
         }
 
@@ -978,27 +978,27 @@ public class CreationWithShooms : MonoBehaviour
         {
             if (!flagSixth)
             {
-                createChunk(numberOfChunkX - 1, numberOfChunkY);
+                createChunk(numberOfChunkX - 1, numberOfChunkZ);
                 flagSixth = true;
             }
         }
         else
         {
-            deleteChunk(nearX, nearY);
+            deleteChunk(nearX, nearZ);
             flagSixth = false;
         }
 
-        if (numberOfChunkY + 1 == -nearY)
+        if (numberOfChunkZ + 1 == -nearZ)
         {
             if (!flagSeventh)
             {
-                createChunk(numberOfChunkX, numberOfChunkY + 1);
+                createChunk(numberOfChunkX, numberOfChunkZ + 1);
                 flagSeventh = true;
             }
         }
         else
         {
-            deleteChunk(nearX, nearY);
+            deleteChunk(nearX, nearZ);
             flagSeventh = false;
         }
 
@@ -1006,13 +1006,13 @@ public class CreationWithShooms : MonoBehaviour
         {
             if (!flagEigth)
             {
-                createChunk(numberOfChunkX + 1, numberOfChunkY);
+                createChunk(numberOfChunkX + 1, numberOfChunkZ);
                 flagEigth = true;
             }
         }
         else
         {
-            deleteChunk(nearX, nearY);
+            deleteChunk(nearX, nearZ);
             flagEigth = false;
         }
 
