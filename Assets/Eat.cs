@@ -24,7 +24,7 @@ public class Eat : MonoBehaviour
     }
     void Update()
     {
-        hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString();
+        hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString() + " Fps: " + (1.0f/Time.deltaTime);
     }
     private void FixedUpdate()
     {

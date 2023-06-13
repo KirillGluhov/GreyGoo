@@ -871,7 +871,7 @@ public class CreationWithShooms : MonoBehaviour
         createChunk(0, 1);
         createChunk(0, -1);
         createChunk(1, 0);
-        createChunk(1, 1);
+        createChunk(1,1);
         createChunk(1, -1);
         createChunk(-1, 0);
         createChunk(-1, 1);
@@ -880,6 +880,16 @@ public class CreationWithShooms : MonoBehaviour
 
     void Update()
     {
+        bool flagZero = true;
+        bool flagFirst = true;
+        bool flagSecond = true;
+        bool flagThird = true;
+        bool flagFourth = true;
+        bool flagFive = true;
+        bool flagSixth = true;
+        bool flagSeventh = true;
+        bool flagEigth = true;
+
         float positionGamerY = GameObject.Find("Goo").transform.position.y;
         float positionGamerX = GameObject.Find("Goo").transform.position.x;
 
@@ -889,77 +899,122 @@ public class CreationWithShooms : MonoBehaviour
         int nearX = ((int)(positionGamerX-17) - ((int)(positionGamerX-17) % 17)) / 17; // -1
         int nearY = ((int)(positionGamerY - 17) - ((int)(positionGamerY - 17) % 17)) / 17;// -1
 
-        /*if (numberOfChunkX - 1 == nearX && numberOfChunkY - 1 == nearY)
+        if (!flagZero)
         {
-            createChunk(numberOfChunkX - 1, numberOfChunkY - 1);
+            createChunk(numberOfChunkX, numberOfChunkY);
+        }
+
+        if (numberOfChunkX - 1 == nearX && numberOfChunkY - 1 == nearY)
+        {
+            if (!flagFirst) 
+            {
+                createChunk(numberOfChunkX - 1, numberOfChunkY - 1); 
+                flagFirst = true;
+            }
         }
         else
         {
             deleteChunk(nearX, nearY);
+            flagFirst = false;
         }
         
         if (numberOfChunkX + 1 == -nearX &&  numberOfChunkY + 1 == -nearY)
         {
-            createChunk(numberOfChunkX + 1, numberOfChunkY + 1);
+            if (!flagSecond)
+            {
+                createChunk(numberOfChunkX + 1, numberOfChunkY + 1);
+                flagSecond = true;
+            }
         }
         else
         {
             deleteChunk(nearX, nearY);
+            flagSecond = false;
         }
 
         if (numberOfChunkX - 1 == nearX && numberOfChunkY + 1 == -nearY)
         {
-            createChunk(numberOfChunkX - 1, numberOfChunkY + 1);
+            if (!flagThird)
+            {
+                createChunk(numberOfChunkX - 1, numberOfChunkY + 1);
+                flagThird = true;
+            }
         }
         else
         {
             deleteChunk(nearX, nearY);
+            flagThird = false;
         }
 
         if (numberOfChunkX + 1 == -nearX && numberOfChunkY - 1 == nearY)
         {
-            createChunk(numberOfChunkX + 1, numberOfChunkY - 1);
+            if (!flagFourth)
+            {
+                createChunk(numberOfChunkX + 1, numberOfChunkY - 1);
+                flagFourth = true;
+            }
         }
         else
         {
             deleteChunk(nearX, nearY);
+            flagFourth = false;
         }
 
         if (numberOfChunkY - 1 == nearY)
         {
-            createChunk(numberOfChunkX, numberOfChunkY - 1);
+            if (!flagFive)
+            {
+                createChunk(numberOfChunkX, numberOfChunkY - 1);
+                flagFive = true;
+            } 
         }
         else
         {
             deleteChunk(nearX, nearY);
+            flagFive = false;
         }
 
         if (numberOfChunkX - 1 == nearX)
         {
-            createChunk(numberOfChunkX - 1, numberOfChunkY);
+            if (!flagSixth)
+            {
+                createChunk(numberOfChunkX - 1, numberOfChunkY);
+                flagSixth = true;
+            }
         }
         else
         {
             deleteChunk(nearX, nearY);
+            flagSixth = false;
         }
 
         if (numberOfChunkY + 1 == -nearY)
         {
-            createChunk(numberOfChunkX, numberOfChunkY + 1);
+            if (!flagSeventh)
+            {
+                createChunk(numberOfChunkX, numberOfChunkY + 1);
+                flagSeventh = true;
+            }
         }
         else
         {
             deleteChunk(nearX, nearY);
+            flagSeventh = false;
         }
 
         if (numberOfChunkX + 1 == -nearX)
         {
-            createChunk(numberOfChunkX + 1, numberOfChunkY);
+            if (!flagEigth)
+            {
+                createChunk(numberOfChunkX + 1, numberOfChunkY);
+                flagEigth = true;
+            }
         }
         else
         {
             deleteChunk(nearX, nearY);
-        }*/
+            flagEigth = false;
+        }
 
 
         if (Input.GetKeyDown(KeyCode.Escape))
