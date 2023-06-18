@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Eat : MonoBehaviour
@@ -11,6 +12,7 @@ public class Eat : MonoBehaviour
     private int numberOfKilled = 0;
     private Rigidbody playerRigidbody;
     public GameObject hungryText;
+    public string nextScene;
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
@@ -25,6 +27,11 @@ public class Eat : MonoBehaviour
     void Update()
     {
         hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(nextScene);
+        }
     }
     private void FixedUpdate()
     {
