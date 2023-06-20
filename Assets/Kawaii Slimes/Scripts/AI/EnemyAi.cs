@@ -179,13 +179,6 @@ public class EnemyAi : MonoBehaviour
             currentState = SlimeAnimationState.Idle;
         }
     }
-    private void OnCollisionEnter(Collision collision){
-        if (collision.gameObject.tag == "Player")
-        {
-            guard.GetComponent<Guard>().enabled = true;
-            reset = 5;
-            GetComponent<SphereCollider>().enabled = false;
-        }}
 
     void OnAnimatorMove()
     {
