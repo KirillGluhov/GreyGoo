@@ -117,23 +117,27 @@ public class TerrainGenerator : MonoBehaviour
                     }
                     else if (chooseAnimal < 7)
                     {
-                        GameObject newOak = Instantiate(Oak, place, Quaternion.identity);
-                        result.Add(newOak);
+                        resultOfHeights[x, (int)((height / ChunkGenerator.BlockScale) + ChunkGenerator.BlockScale), z] = BlockType.Wood;
+                        //GameObject newOak = Instantiate(Oak, place, Quaternion.identity);
+                        //result.Add(newOak);
                     }
                     else if (chooseAnimal < 8)
                     {
-                        GameObject newPalm = Instantiate(Palm, place, Quaternion.identity);
-                        result.Add(newPalm);
+                        resultOfHeights[x, (int)((height / ChunkGenerator.BlockScale) + ChunkGenerator.BlockScale), z] = BlockType.Wood;
+                        //GameObject newPalm = Instantiate(Palm, place, Quaternion.identity);
+                        //result.Add(newPalm);
                     }
                     else if (chooseAnimal < 9)
                     {
-                        GameObject newPoplar = Instantiate(Poplar, place, Quaternion.identity);
-                        result.Add(newPoplar);
+                        resultOfHeights[x, (int)((height / ChunkGenerator.BlockScale) + ChunkGenerator.BlockScale), z] = BlockType.Wood;
+                        //GameObject newPoplar = Instantiate(Poplar, place, Quaternion.identity);
+                        //result.Add(newPoplar);
                     }
                     else if (chooseAnimal < 10)
                     {
-                        GameObject newFir = Instantiate(Fir, place, Quaternion.identity);
-                        result.Add(newFir);
+                        resultOfHeights[x, (int)((height / ChunkGenerator.BlockScale) + ChunkGenerator.BlockScale), z] = BlockType.Wood;
+                        //GameObject newFir = Instantiate(Fir, place, Quaternion.identity);
+                        //result.Add(newFir);
                     }
                 }
 

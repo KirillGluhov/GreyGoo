@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameWorld : MonoBehaviour
 {
-    private const int ViewRadius = 5;
+    private const int ViewRadius = 2;
 
     public Dictionary<Vector2Int, ChunkData> ChunkDatas = new Dictionary<Vector2Int, ChunkData>();
     public ChunkGenerator Chunkprefab;
@@ -24,29 +24,27 @@ public class GameWorld : MonoBehaviour
 
     private IEnumerator Generate(bool wait)
     {
-
         for (int x = currentPlayerChunk.x - ViewRadius; x < currentPlayerChunk.x + ViewRadius; x++)
         {
             for (int y = currentPlayerChunk.y - ViewRadius; y < currentPlayerChunk.y + ViewRadius; y++)
             {
-                Vector2Int chunkPosition = new Vector2Int(x,y);
+                Vector2Int chunkPosition = new Vector2Int(x, y);
 
-                if (ChunkDatas.ContainsKey(new Vector2Int(x, y))) 
+                if (ChunkDatas.ContainsKey(chunkPosition))
                 {
-                    var value = ChunkDatas[new Vector2Int(x, y)];
+                    var value = ChunkDatas[chunkPosition];
 
                     for (int i = 0; i < value.infoAboutChunk.AnimalsAndTrees.Count; i++)
                     {
                         value.infoAboutChunk.AnimalsAndTrees[i].SetActive(true);
                     }
                     value.Renderer.gameObject.SetActive(true);
-                    continue; 
+                    continue;
                 }
 
                 LoadChunk(chunkPosition);
 
                 if (wait) yield return new WaitForSecondsRealtime(0.2f);
-                
             }
         }
     }
