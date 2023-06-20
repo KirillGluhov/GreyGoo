@@ -9,7 +9,7 @@ namespace SlimUI.ModernMenu{
 		private Animator CameraObject;
 
 		// campaign button sub menu
-        [Header("MENUS")]
+        [Header("GreyGoo")]
         [Tooltip("The Menu for when the MAIN menu buttons")]
         public GameObject mainMenu;
         [Tooltip("THe first list of buttons")]
