@@ -231,6 +231,7 @@ public class ChunkGenerator : MonoBehaviour
                 uvs.Add(new Vector2(10f / (float)(lengthOfImage + 0), (float)(height - 10) / (float)(height)));
                 uvs.Add(new Vector2((float)(lengthOfSide - 10) / (float)(lengthOfImage), (float)(lengthOfSide + 10) / (float)(height)));
                 uvs.Add(new Vector2((float)(lengthOfSide - 10) / (float)(lengthOfImage), (float)(height - 10) / (float)(height)));
+
             }
             else
             {
@@ -263,6 +264,13 @@ public class ChunkGenerator : MonoBehaviour
             uvs.Add(new Vector2(20f / lengthOfImage, (float)(lengthOfSide - 20) / (float)(height)));
             uvs.Add(new Vector2((float)(lengthOfSide - 20) / (float)(lengthOfImage), 20f / height));
             uvs.Add(new Vector2((float)(lengthOfSide - 20) / (float)(lengthOfImage), (float)(lengthOfSide - 20) / (float)(height)));
+        }
+        else if (blockType == BlockType.Leafs)
+        {
+            uvs.Add(new Vector2((float)(20 + lengthOfSide) / lengthOfImage, 20f / height));
+            uvs.Add(new Vector2((float)(20 + lengthOfSide) / lengthOfImage, (float)(lengthOfSide - 20) / (float)(height)));
+            uvs.Add(new Vector2((float)(lengthOfSide * 2 - 20) / (float)(lengthOfImage), 20f / height));
+            uvs.Add(new Vector2((float)(lengthOfSide * 2 - 20) / (float)(lengthOfImage), (float)(lengthOfSide - 20) / (float)(height)));
         }
         
     }

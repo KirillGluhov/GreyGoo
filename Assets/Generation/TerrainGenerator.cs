@@ -115,29 +115,14 @@ public class TerrainGenerator : MonoBehaviour
                         GameObject newTaipan = Instantiate(Taipan, place, Quaternion.identity);
                         result.Add(newTaipan);
                     }
-                    else if (chooseAnimal < 7)
+                    else if (chooseAnimal >= 6)
                     {
-                        resultOfHeights[x, (int)((height / ChunkGenerator.BlockScale) + ChunkGenerator.BlockScale), z] = BlockType.Wood;
+                        int minHeight = (int)((height / ChunkGenerator.BlockScale) + ChunkGenerator.BlockScale);
+                        resultOfHeights[x, minHeight, z] = BlockType.Wood;
+                        
+                        generateTree(resultOfHeights, chooseAnimal, minHeight, x, z);
                         //GameObject newOak = Instantiate(Oak, place, Quaternion.identity);
                         //result.Add(newOak);
-                    }
-                    else if (chooseAnimal < 8)
-                    {
-                        resultOfHeights[x, (int)((height / ChunkGenerator.BlockScale) + ChunkGenerator.BlockScale), z] = BlockType.Wood;
-                        //GameObject newPalm = Instantiate(Palm, place, Quaternion.identity);
-                        //result.Add(newPalm);
-                    }
-                    else if (chooseAnimal < 9)
-                    {
-                        resultOfHeights[x, (int)((height / ChunkGenerator.BlockScale) + ChunkGenerator.BlockScale), z] = BlockType.Wood;
-                        //GameObject newPoplar = Instantiate(Poplar, place, Quaternion.identity);
-                        //result.Add(newPoplar);
-                    }
-                    else if (chooseAnimal < 10)
-                    {
-                        resultOfHeights[x, (int)((height / ChunkGenerator.BlockScale) + ChunkGenerator.BlockScale), z] = BlockType.Wood;
-                        //GameObject newFir = Instantiate(Fir, place, Quaternion.identity);
-                        //result.Add(newFir);
                     }
                 }
 
@@ -150,6 +135,73 @@ public class TerrainGenerator : MonoBehaviour
         newInfo.AnimalsAndTrees = result;
 
         return newInfo;
+    }
+
+    private void generateTree(BlockType[,,] resultOfHeights, float chooseTree, int height, int x, int z)
+    {
+        if (chooseTree < 10)
+        {
+            resultOfHeights[x, height + 1, z] = BlockType.Wood;
+            resultOfHeights[x, height + 2, z] = BlockType.Wood;
+
+            for (int i = -2; i <= 2; i++)
+            {
+                for (int j = -2; j <= 2;j++)
+                {
+                    if (i == 0 && j == 0)
+                    {
+                        resultOfHeights[x, height + 3, z] = BlockType.Wood;
+                    }
+                    else if ((i == -2 && j == -2) || (i == 2 && j == -2))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        resultOfHeights[x+i, height + 3, z+j] = BlockType.Leafs;
+                    }
+                }
+            }
+
+            for (int i = -2; i <= 2; i++)
+            {
+                for (int j = -2; j <= 2; j++)
+                {
+                    if (i == 0 && j == 0)
+                    {
+                        resultOfHeights[x, height + 4, z] = BlockType.Wood;
+                    }
+                    else if ((i == -2 && j == -2) || (i == 2 && j == 2))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        resultOfHeights[x + i, height + 4, z + j] = BlockType.Leafs;
+                    }
+                }
+            }
+
+            {
+                resultOfHeights[x, height + 5, z] = BlockType.Wood;
+
+                resultOfHeights[x, height + 5, z-1] = BlockType.Leafs;
+                resultOfHeights[x, height + 5, z+1] = BlockType.Leafs;
+                resultOfHeights[x-1, height + 5, z] = BlockType.Leafs;
+                resultOfHeights[x+1, height + 5, z] = BlockType.Leafs;
+                resultOfHeights[x+1, height + 5, z-1] = BlockType.Leafs;
+                resultOfHeights[x-1, height + 5, z+1] = BlockType.Leafs;
+            }
+
+            {
+                resultOfHeights[x, height + 6, z] = BlockType.Leafs;
+                resultOfHeights[x, height + 6, z-1] = BlockType.Leafs;
+                resultOfHeights[x, height + 6, z+1] = BlockType.Leafs;
+                resultOfHeights[x-1, height + 6, z] = BlockType.Leafs;
+                resultOfHeights[x+1, height + 6, z] = BlockType.Leafs;
+
+            }
+        }
     }
 
     private float GetHeight(float x, float y)
