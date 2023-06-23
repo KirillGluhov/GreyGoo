@@ -584,8 +584,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ac4d980f05c4d4d8598c74ae785b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 0.5
   avoidanceRadius: 5
+  fleeRadius: 10
+  minFleeDuration: 2
+  maxFleeDuration: 5
 --- !u!1 &6083290255144712620
 GameObject:
   m_ObjectHideFlags: 0

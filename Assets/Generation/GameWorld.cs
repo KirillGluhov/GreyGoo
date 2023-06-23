@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class GameWorld : MonoBehaviour
 {
-    private const int ViewRadius = 2;
+    private const int ViewRadius = 5;
 
     public Dictionary<Vector2Int, ChunkData> ChunkDatas = new Dictionary<Vector2Int, ChunkData>();
     public ChunkGenerator Chunkprefab;
     public TerrainGenerator Generator;
 
+    public bool IsStartFinished = false;
+
     public GameObject player;
 
     private Camera mainCamera;
     private Vector2Int currentPlayerChunk;
-    void Start()
+    public void Start()
     {
         mainCamera = Camera.main;
 
         Generator.Init();
         StartCoroutine(Generate(false));
+
+        IsStartFinished = true;
     }
 
     private IEnumerator Generate(bool wait)
@@ -28,6 +32,7 @@ public class GameWorld : MonoBehaviour
         {
             for (int y = currentPlayerChunk.y - ViewRadius; y < currentPlayerChunk.y + ViewRadius; y++)
             {
+
                 Vector2Int chunkPosition = new Vector2Int(x, y);
 
                 if (ChunkDatas.ContainsKey(chunkPosition))

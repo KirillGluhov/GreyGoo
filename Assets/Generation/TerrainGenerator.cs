@@ -90,7 +90,7 @@ public class TerrainGenerator : MonoBehaviour
                 if (random.NextDouble() > 0.999 && height / ChunkGenerator.BlockScale > waterLevel)
                 {
                     float chooseAnimal = UnityEngine.Random.Range(0, 10);
-                    Vector3 place = new Vector3(x * ChunkGenerator.BlockScale + xOffset, height, z * ChunkGenerator.BlockScale + zOffset);
+                    Vector3 place = new Vector3(x * ChunkGenerator.BlockScale + xOffset, height + ChunkGenerator.BlockScale, z * ChunkGenerator.BlockScale + zOffset);
 
                     if (chooseAnimal < 1)
                     {
@@ -119,7 +119,7 @@ public class TerrainGenerator : MonoBehaviour
                     }
                     else if (chooseAnimal < 6)
                     {
-                        GameObject newTaipan = Instantiate(Taipan, place + new Vector3(0, ChunkGenerator.BlockScale, 0), Quaternion.identity);
+                        GameObject newTaipan = Instantiate(Taipan, place, Quaternion.identity);
                         result.Add(newTaipan);
                     }
                     else if (chooseAnimal >= 6)

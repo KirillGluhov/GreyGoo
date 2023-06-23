@@ -162,7 +162,7 @@ public class ChunkGenerator : MonoBehaviour
         verticies.Add((new Vector3(0, 1, 1) + blockPosition) * BlockScale);
         
 
-        AddLastVerticiesSquare(3, blockType);
+        AddLastVerticiesSquare(2, blockType);
     }
 
     private void AddLastVerticiesSquare(int side, BlockType blockType)
@@ -196,7 +196,7 @@ public class ChunkGenerator : MonoBehaviour
         verticies.Add((new Vector3(1, 0, 0) + blockPosition) * BlockScale);
         verticies.Add((new Vector3(1, 1, 0) + blockPosition) * BlockScale);
 
-        AddLastVerticiesSquare(1, blockType);
+        AddLastVerticiesSquare(4, blockType);
     }
 
     private void GenerateTopSide(Vector3Int blockPosition, BlockType blockType)
@@ -216,7 +216,7 @@ public class ChunkGenerator : MonoBehaviour
         verticies.Add((new Vector3(0, 0, 1) + blockPosition) * BlockScale);
         verticies.Add((new Vector3(1, 0, 1) + blockPosition) * BlockScale);
 
-        AddLastVerticiesSquare(4, blockType);
+        AddLastVerticiesSquare(5, blockType);
     }
 
     private void AddUvs(int side, BlockType blockType)
@@ -253,10 +253,20 @@ public class ChunkGenerator : MonoBehaviour
         }
         else if (blockType == BlockType.Wood)
         {
-            uvs.Add(new Vector2(20f / lengthOfImage, 20f / height));
-            uvs.Add(new Vector2(20f / lengthOfImage, (float)(lengthOfSide - 20) / (float)(height)));
-            uvs.Add(new Vector2((float)(lengthOfSide - 20) / (float)(lengthOfImage), 20f / height));
-            uvs.Add(new Vector2((float)(lengthOfSide - 20) / (float)(lengthOfImage), (float)(lengthOfSide - 20) / (float)(height)));
+            if (side == 1 || side == 4)
+            {
+                uvs.Add(new Vector2(20f / lengthOfImage, 20f / height));
+                uvs.Add(new Vector2(20f / lengthOfImage, (float)(lengthOfSide - 20) / (float)(height)));
+                uvs.Add(new Vector2((float)(lengthOfSide - 20) / (float)(lengthOfImage), 20f / height));
+                uvs.Add(new Vector2((float)(lengthOfSide - 20) / (float)(lengthOfImage), (float)(lengthOfSide - 20) / (float)(height)));
+            }
+            else if (side == 2 || side == 3)
+            {
+                uvs.Add(new Vector2(20f / lengthOfImage, 20f / height));
+                uvs.Add(new Vector2((float)(lengthOfSide - 20) / (float)(lengthOfImage), 20f / height));
+                uvs.Add(new Vector2(20f / lengthOfImage, (float)(lengthOfSide - 20) / (float)(height)));
+                uvs.Add(new Vector2((float)(lengthOfSide - 20) / (float)(lengthOfImage), (float)(lengthOfSide - 20) / (float)(height)));
+            }
         }
         else if (blockType == BlockType.Leafs)
         {
