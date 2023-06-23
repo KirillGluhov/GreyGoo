@@ -4,7 +4,7 @@ using UnityEngine;
 public class ChunkData
 {
     public Vector2Int Chunkposition;
-    public ChunkGenerator Renderer; //
+    public ChunkGenerator Renderer; 
     public infoaboutChunk infoAboutChunk;
 }
 

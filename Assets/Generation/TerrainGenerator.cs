@@ -17,9 +17,13 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject Poplar;
     public GameObject Fir;
 
+    public GameObject Water;
+
     public float BaseHeight = 8f;
     public NoiseOctaveSettings[] Octaves;
     public NoiseOctaveSettings DomainWarp;
+
+    public static int waterLevel = 30;
 
     [Serializable]
     public class NoiseOctaveSettings
@@ -58,9 +62,17 @@ public class TerrainGenerator : MonoBehaviour
         {
             for (int z = 0; z < ChunkGenerator.ChunkWidth; z++)
             {
+                if (x == ChunkGenerator.ChunkWidth/2 && z == ChunkGenerator.ChunkWidth/2)
+                {
+                    GameObject newWater = Instantiate(Water, new Vector3(x * ChunkGenerator.BlockScale + xOffset, waterLevel * ChunkGenerator.BlockScale - 0.5f * ChunkGenerator.BlockScale, z * ChunkGenerator.BlockScale + zOffset), Quaternion.identity);
+                    newWater.transform.localScale = new Vector3(ChunkGenerator.BlockScale * ChunkGenerator.ChunkWidth, ChunkGenerator.BlockScale * ChunkGenerator.ChunkWidth, 1);
+                    newWater.transform.rotation = Quaternion.Euler(90, 0, 0);
+
+                    result.Add(newWater);
+                }
+
                 float height = GetHeight((x * ChunkGenerator.BlockScale + xOffset), (z * ChunkGenerator.BlockScale + zOffset));
                 float grassLayerHeight = 1;
-                int waterLevel = 30;
                 Random random = new Random();
 
                 for (int y = 0; y < height/ChunkGenerator.BlockScale; y++)
@@ -73,11 +85,6 @@ public class TerrainGenerator : MonoBehaviour
                     {
                         resultOfHeights[x, y, z] = BlockType.Stone;
                     }
-                }
-
-                if (resultOfHeights[x, waterLevel, z] != BlockType.Stone && resultOfHeights[x, waterLevel, z] != BlockType.Grass)
-                {
-                    resultOfHeights[x, waterLevel, z] = BlockType.Water;
                 }
 
                 if (random.NextDouble() > 0.999 && height / ChunkGenerator.BlockScale > waterLevel)
@@ -112,7 +119,7 @@ public class TerrainGenerator : MonoBehaviour
                     }
                     else if (chooseAnimal < 6)
                     {
-                        GameObject newTaipan = Instantiate(Taipan, place, Quaternion.identity);
+                        GameObject newTaipan = Instantiate(Taipan, place + new Vector3(0, ChunkGenerator.BlockScale, 0), Quaternion.identity);
                         result.Add(newTaipan);
                     }
                     else if (chooseAnimal >= 6)

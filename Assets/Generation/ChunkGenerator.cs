@@ -18,6 +18,7 @@ public class ChunkGenerator : MonoBehaviour
     private List<Vector3> verticies = new List<Vector3>();
     private List<Vector2> uvs = new List<Vector2>();
     private List<int> triangles = new List<int>();
+
     private void Start()
     {
         chunkMesh = new Mesh();
@@ -33,6 +34,7 @@ public class ChunkGenerator : MonoBehaviour
         verticies.Clear();
         uvs.Clear();
         triangles.Clear();
+
         for (int y = 0; y < ChunkHeight; y++)
         {
             for (int x = 0; x < ChunkWidth; x++)
@@ -51,7 +53,6 @@ public class ChunkGenerator : MonoBehaviour
         chunkMesh.triangles = triangles.ToArray();
 
         chunkMesh.Optimize();
-
         chunkMesh.RecalculateBounds();
         chunkMesh.RecalculateNormals();
 
@@ -64,30 +65,32 @@ public class ChunkGenerator : MonoBehaviour
 
         if (GetBlockAtPosition(blockPosition) == 0) return;
 
-        if (GetBlockAtPosition(blockPosition + Vector3Int.right) == 0) 
-        { 
-            GenerateRightSide(blockPosition, GetBlockAtPosition(blockPosition));
-        }
-        if (GetBlockAtPosition(blockPosition + Vector3Int.left) == 0) 
-        {
-            GenerateLeftSide(blockPosition, GetBlockAtPosition(blockPosition));
-        }
-        if (GetBlockAtPosition(blockPosition + Vector3Int.forward) == 0) 
-        {
-            GenerateFrontSide(blockPosition, GetBlockAtPosition(blockPosition));
-        }
-        if (GetBlockAtPosition(blockPosition + Vector3Int.back) == 0) 
-        { 
-            GenerateBackSide(blockPosition, GetBlockAtPosition(blockPosition));
-        }
-        if (GetBlockAtPosition(blockPosition + Vector3Int.up) == 0) 
-        { 
-            GenerateTopSide(blockPosition, GetBlockAtPosition(blockPosition));
-        }
-        if (GetBlockAtPosition(blockPosition + Vector3Int.down) == 0) 
-        { 
-            GenerateBottomSide(blockPosition, GetBlockAtPosition(blockPosition));
-        }
+            if (GetBlockAtPosition(blockPosition + Vector3Int.right) == 0)
+            {
+                GenerateRightSide(blockPosition, GetBlockAtPosition(blockPosition));
+            }
+            if (GetBlockAtPosition(blockPosition + Vector3Int.left) == 0)
+            {
+                GenerateLeftSide(blockPosition, GetBlockAtPosition(blockPosition));
+            }
+            if (GetBlockAtPosition(blockPosition + Vector3Int.forward) == 0)
+            {
+                GenerateFrontSide(blockPosition, GetBlockAtPosition(blockPosition));
+            }
+            if (GetBlockAtPosition(blockPosition + Vector3Int.back) == 0)
+            {
+                GenerateBackSide(blockPosition, GetBlockAtPosition(blockPosition));
+            }
+            if (GetBlockAtPosition(blockPosition + Vector3Int.up) == 0)
+            {
+                GenerateTopSide(blockPosition, GetBlockAtPosition(blockPosition));
+            }
+            if (GetBlockAtPosition(blockPosition + Vector3Int.down) == 0)
+            {
+                GenerateBottomSide(blockPosition, GetBlockAtPosition(blockPosition));
+            }
+
+        
     }
 
     private BlockType GetBlockAtPosition(Vector3Int blockPosition)
@@ -248,16 +251,6 @@ public class ChunkGenerator : MonoBehaviour
             uvs.Add(new Vector2((float)(lengthOfSide * 4 - 100) / (float)(lengthOfImage), (float)(lengthOfSide + 100) / (float)(height)));
             uvs.Add(new Vector2((float)(lengthOfSide * 4 - 100) / (float)(lengthOfImage), (float)(height - 100) / (float)(height)));
         }
-        else if (blockType == BlockType.Water)
-        {
-            {
-                uvs.Add(new Vector2((float)(100 + lengthOfSide * 4) / (float)(lengthOfImage), (float)(lengthOfSide + 100) / (float)(height)));
-                uvs.Add(new Vector2((float)(100 + lengthOfSide * 4) / (float)(lengthOfImage), (float)(height - 100) / (float)(height)));
-                uvs.Add(new Vector2((float)(lengthOfSide * 5 - 100) / (float)(lengthOfImage), (float)(lengthOfSide + 100) / (float)(height)));
-                uvs.Add(new Vector2((float)(lengthOfSide * 5 - 100) / (float)(lengthOfImage), (float)(height - 100) / (float)(height)));
-            }
-            
-        }
         else if (blockType == BlockType.Wood)
         {
             uvs.Add(new Vector2(20f / lengthOfImage, 20f / height));
@@ -272,6 +265,16 @@ public class ChunkGenerator : MonoBehaviour
             uvs.Add(new Vector2((float)(lengthOfSide * 2 - 20) / (float)(lengthOfImage), 20f / height));
             uvs.Add(new Vector2((float)(lengthOfSide * 2 - 20) / (float)(lengthOfImage), (float)(lengthOfSide - 20) / (float)(height)));
         }
-        
+        else if (blockType == BlockType.Water)
+        {
+            {
+                uvs.Add(new Vector2((float)(100 + lengthOfSide * 4) / (float)(lengthOfImage), (float)(lengthOfSide + 100) / (float)(height)));
+                uvs.Add(new Vector2((float)(100 + lengthOfSide * 4) / (float)(lengthOfImage), (float)(height - 100) / (float)(height)));
+                uvs.Add(new Vector2((float)(lengthOfSide * 5 - 100) / (float)(lengthOfImage), (float)(lengthOfSide + 100) / (float)(height)));
+                uvs.Add(new Vector2((float)(lengthOfSide * 5 - 100) / (float)(lengthOfImage), (float)(height - 100) / (float)(height)));
+            }
+
+        }
+
     }
 }
