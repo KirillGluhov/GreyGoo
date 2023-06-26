@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class OxygenDisplay : MonoBehaviour
 {
     public static float oxygenAmount = 100f;
@@ -11,10 +10,6 @@ public class OxygenDisplay : MonoBehaviour
     public Text oxygenText;
     private bool inWater = false;
 
-    private void Start()
-    {
-        
-    }
     private void Update()
     {
         if (inWater)
@@ -24,26 +19,30 @@ public class OxygenDisplay : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Water"))
-        {
-            inWater = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Water"))
-        {
-            inWater = false;
-        }
-    }
-
     private void UpdateOxygenDisplay()
     {
         oxygenText.text = "Oxygen: " + Mathf.RoundToInt(oxygenAmount).ToString();
+        
+    }
+
+    private void FixedUpdate()
+    {
+        float waterLevel = TerrainGenerator.waterLevel * ChunkGenerator.BlockScale - 0.5f * ChunkGenerator.BlockScale;
+
+        if (transform.position.y < waterLevel)
+        {
+            if (!inWater)
+            {
+                inWater = true;
+            }
+        }
+        else
+        {
+            if (inWater)
+            {
+                inWater = false;
+            }
+        }
+
     }
 }
-
-

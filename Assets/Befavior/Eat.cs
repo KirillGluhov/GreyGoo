@@ -37,13 +37,14 @@ public class Eat : MonoBehaviour
     {
         levelOfHungry -= 0.02f;
 
-        if (levelOfHungry <= 0 || playerRigidbody.transform.position.y < -10)
+        if (levelOfHungry <= 0 || playerRigidbody.transform.position.y < -10 || OxygenDisplay.oxygenAmount <= 0)
         {
             playerRigidbody.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 0));
             playerRigidbody.position = new Vector3(0, 8.25f, 0);
             playerRigidbody.transform.localScale = new Vector3(1f, 1f, 1f);
             radius = 1f;
             levelOfHungry = 100f;
+            OxygenDisplay.oxygenAmount = 100f;
         }
     }
 
