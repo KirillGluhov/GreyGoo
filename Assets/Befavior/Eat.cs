@@ -26,7 +26,14 @@ public class Eat : MonoBehaviour
     }
     void Update()
     {
-        hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString() + "\n" + "Oxygen: " + Mathf.RoundToInt(OxygenDisplay.oxygenAmount).ToString();
+        if (OxygenDisplay.oxygenAmount <= 99f)
+        {
+            hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString() + "\n" + "Oxygen: " + Mathf.RoundToInt(OxygenDisplay.oxygenAmount).ToString();
+        }
+        else
+        {
+            hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString();
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
