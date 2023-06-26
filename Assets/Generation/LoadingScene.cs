@@ -33,7 +33,7 @@ public class LoadingScene : MonoBehaviour
             if (asyncLoad.progress >= 0.9f)
             {
                 // Ждем 3 секунды перед переходом на новую сцену
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(10f);
 
                 // Разрешаем активацию загруженной сцены
                 asyncLoad.allowSceneActivation = true;

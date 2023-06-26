@@ -21,16 +21,16 @@ public class GameWorld : MonoBehaviour
         mainCamera = Camera.main;
 
         Generator.Init();
-        StartCoroutine(Generate(false));
+        Generat(false, ViewRadius);
 
         IsStartFinished = true;
     }
 
-    private IEnumerator Generate(bool wait)
+    private IEnumerator Generate(bool wait, int radius)
     {
-        for (int x = currentPlayerChunk.x - ViewRadius; x < currentPlayerChunk.x + ViewRadius; x++)
+        for (int x = currentPlayerChunk.x - radius; x < currentPlayerChunk.x + radius; x++)
         {
-            for (int y = currentPlayerChunk.y - ViewRadius; y < currentPlayerChunk.y + ViewRadius; y++)
+            for (int y = currentPlayerChunk.y - radius; y < currentPlayerChunk.y + radius; y++)
             {
 
                 Vector2Int chunkPosition = new Vector2Int(x, y);
@@ -52,6 +52,35 @@ public class GameWorld : MonoBehaviour
                 if (wait) yield return new WaitForSecondsRealtime(0.2f);
             }
         }
+    }
+
+    private void Generat(bool wait, int radius)
+    {
+        for (int x = currentPlayerChunk.x - radius; x < currentPlayerChunk.x + radius; x++)
+        {
+            for (int y = currentPlayerChunk.y - radius; y < currentPlayerChunk.y + radius; y++)
+            {
+
+                Vector2Int chunkPosition = new Vector2Int(x, y);
+
+                if (ChunkDatas.ContainsKey(chunkPosition))
+                {
+                    var value = ChunkDatas[chunkPosition];
+
+                    for (int i = 0; i < value.infoAboutChunk.AnimalsAndTrees.Count; i++)
+                    {
+                        value.infoAboutChunk.AnimalsAndTrees[i].SetActive(true);
+                    }
+                    value.Renderer.gameObject.SetActive(true);
+                    continue;
+                }
+
+                LoadChunk(chunkPosition);
+            }
+        }
+
+        IsStartFinished = true;
+
     }
 
     public void LoadChunk(Vector2Int chunkPosition)
@@ -80,7 +109,7 @@ public class GameWorld : MonoBehaviour
         if (playerChunk != currentPlayerChunk)
         {
             currentPlayerChunk = playerChunk;
-            StartCoroutine(Generate(true));
+            StartCoroutine(Generate(true, ViewRadius));
         }
 
         List<Vector2Int> chunksToRemove = new List<Vector2Int>();
