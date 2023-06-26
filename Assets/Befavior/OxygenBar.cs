@@ -17,6 +17,7 @@ public class OxygenDisplay : MonoBehaviour
             oxygenAmount -= oxygenLossRate * Time.deltaTime;
             UpdateOxygenDisplay(); 
     }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -39,4 +40,5 @@ public class OxygenDisplay : MonoBehaviour
         oxygenText.text = "Oxygen: " + Mathf.RoundToInt(oxygenAmount).ToString(); 
     }
 }
+
 
