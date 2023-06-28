@@ -52,8 +52,16 @@ public class Movement : MonoBehaviour
         {
             if (hit.collider.CompareTag("Chunk"))
             {
+                GameObject chunk = hit.collider.gameObject;
 
-                Destroy(hit.collider.gameObject); 
+                Chunk chunkComponent = chunk.GetComponent<Chunk>();
+                string blockName = chunkComponent.blockName;
+                int blockValue = chunkComponent.blockValue;
+
+                ResourceManager.Instance.AddResource(blockName, blockValue);
+
+                
+                Destroy(chunk);
             }
         }
     }
