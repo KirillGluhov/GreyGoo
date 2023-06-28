@@ -43,4 +43,18 @@ public class Movement : MonoBehaviour
     {
         isJumping = false;
     }
+    private void CollectBlock()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.CompareTag("Chunk"))
+            {
+
+                Destroy(hit.collider.gameObject); 
+            }
+        }
+    }
 }
