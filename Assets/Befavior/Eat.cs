@@ -67,6 +67,14 @@ public class Eat : MonoBehaviour
             radius = Mathf.Pow(1.0f + ((1.0f / 5.0f) * numberOfKilled), 1.0f / 3.0f);
             playerRigidbody.transform.localScale = new Vector3(radius, radius, radius);
         }
+        else if (collision.gameObject.CompareTag("Killed"))
+        { 
+            levelOfHungry -= 20f;
+            // numberOfKilled++;
+
+            radius = -Mathf.Pow(1.0f + ((1.0f / 5.0f) * numberOfKilled), 1.0f / 3.0f);
+            playerRigidbody.transform.localScale = new Vector3(radius, radius, radius);
+        }
     }
 
 }
