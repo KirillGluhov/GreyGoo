@@ -22,17 +22,17 @@ public class Eat : MonoBehaviour
         rectTransform.anchorMin = new Vector2(0f, 1f);
         rectTransform.anchorMax = new Vector2(0f, 1f);
 
-        rectTransform.anchoredPosition = new Vector2(90f, -40f);
+        rectTransform.anchoredPosition = new Vector2(90f, -70f);
     }
     void Update()
     {
         if (OxygenDisplay.oxygenAmount <= 99f)
         {
-            hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString() + "\n" + "Oxygen: " + Mathf.RoundToInt(OxygenDisplay.oxygenAmount).ToString();
+            hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString() + "\n" + "Number of killed: " + numberOfKilled.ToString() + "\n" + "Oxygen: " + Mathf.RoundToInt(OxygenDisplay.oxygenAmount).ToString();
         }
         else
         {
-            hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString();
+            hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString() + "\n" + "Number of killed: " + numberOfKilled.ToString();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
