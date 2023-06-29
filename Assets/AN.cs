@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AN : MonoBehaviour
 {
-public float moveSpeed = 0.25f;
-    public float avoidanceRadius = 5f;
-    public float fleeRadius = 10f;
-    public float minFleeDuration = 2f;
-    public float maxFleeDuration = 5f;
+    public float moveSpeed = 0.25f;
+    public float detectionRadius = 10f;
+    public float minChaseDuration = 2f;
+    public float maxChaseDuration = 5f;
 
     private Transform player;
-    private bool isFleeing = false;
-    private float fleeTimer = 0f;
+    private bool isChasing = false;
+    private float chaseTimer = 0f;
 
     private void Awake()
     {
@@ -21,9 +18,9 @@ public float moveSpeed = 0.25f;
 
     private void Update()
     {
-        if (isFleeing)
+        if (isChasing)
         {
-            FleeFromPlayer();
+            ChasePlayer();
         }
         else
         {
@@ -36,29 +33,29 @@ public float moveSpeed = 0.25f;
         Vector3 direction = player.position - transform.position;
         float distance = direction.magnitude;
 
-        if (distance < fleeRadius)
+        if (distance < detectionRadius)
         {
-            StartFleeing();
+            StartChasing();
         }
     }
 
-    private void StartFleeing()
+    private void StartChasing()
     {
-        isFleeing = true;
-        fleeTimer = Random.Range(minFleeDuration, maxFleeDuration);
+        isChasing = true;
+        chaseTimer = Random.Range(minChaseDuration, maxChaseDuration);
     }
 
-    private void FleeFromPlayer()
+    private void ChasePlayer()
     {
-        fleeTimer -= Time.deltaTime;
+        chaseTimer -= Time.deltaTime;
 
-        if (fleeTimer <= 0f)
+        if (chaseTimer <= 0f)
         {
-            isFleeing = false;
+            isChasing = false;
         }
         else
         {
-            Vector3 direction = transform.position - player.position;
+            Vector3 direction = player.position - transform.position;
             Vector3 moveDirection = direction.normalized;
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
         }
@@ -70,5 +67,5 @@ public float moveSpeed = 0.25f;
         {
             transform.Rotate(Vector3.up, 180f);
         }
-}
+    }
 }
