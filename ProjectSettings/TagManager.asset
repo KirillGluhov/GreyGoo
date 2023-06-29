@@ -8,6 +8,7 @@ TagManager:
   - Mob
   - Chunk
   - Water
+  - Killed
   layers:
   - Default
   - TransparentFX
