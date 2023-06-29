@@ -29,6 +29,18 @@ public class ChunkGenerator : MonoBehaviour
         GetComponent<MeshCollider>().sharedMesh = chunkMesh;
     }
 
+    public void SpawnBlock(Vector3Int blockPosition)
+    {
+        ChunkData.infoAboutChunk.Blocks[blockPosition.x, blockPosition.y, blockPosition.z] = BlockType.Grass;
+        RegenerateMesh();
+    }
+
+    public void DestroyBlock(Vector3Int blockPosition)
+    {
+        ChunkData.infoAboutChunk.Blocks[blockPosition.x, blockPosition.y, blockPosition.z] = BlockType.Air;
+        RegenerateMesh();
+    }
+
     private void RegenerateMesh()
     {
         verticies.Clear();

@@ -103,6 +103,50 @@ public class GameWorld : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        {
+            bool isDestroying = Input.GetMouseButtonDown(0);
+
+            ///
+            Vector3 mousePosition = Input.mousePosition;
+            Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.nearClipPlane));
+            Vector3 rayDirection = worldMousePosition - Camera.main.transform.position;
+            Ray ray = new Ray(Camera.main.transform.position, rayDirection);
+            ///
+
+
+            if (Physics.Raycast(ray, out var hitInfo))
+            {
+                Vector3 blockCenter;
+
+                if (isDestroying)
+                {
+                    blockCenter = hitInfo.point - hitInfo.normal * ChunkGenerator.BlockScale / 2;
+                }
+                else
+                {
+                    blockCenter = hitInfo.point + hitInfo.normal * ChunkGenerator.BlockScale / 2;
+                }
+                
+                Vector3Int blockWorldPos = Vector3Int.FloorToInt(blockCenter / ChunkGenerator.BlockScale);
+                Vector2Int chunkPos = GetChunkContainingBlock(blockWorldPos);
+
+                if (ChunkDatas.TryGetValue(chunkPos, out ChunkData chunkData))
+                {
+                    var chunkOrigin = new Vector3Int(chunkPos.x , chunkPos.y) * ChunkGenerator.ChunkWidth;
+
+                    if (isDestroying)
+                    {
+                        chunkData.Renderer.DestroyBlock(blockWorldPos - chunkOrigin);
+                    }
+                    else
+                    {
+                        chunkData.Renderer.SpawnBlock(blockWorldPos - chunkOrigin);
+                    }
+                }
+            }
+        }
+
         Vector3Int playerWorldPos = Vector3Int.FloorToInt(player.transform.position / ChunkGenerator.BlockScale);
         Vector2Int playerChunk = GetChunkContainingBlock(playerWorldPos);
 
