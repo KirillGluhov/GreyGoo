@@ -72,8 +72,8 @@ public class Eat : MonoBehaviour
             levelOfHungry -= 20f;
             // numberOfKilled++;
 
-            radius = -Mathf.Pow(1.0f + ((1.0f / 5.0f) * numberOfKilled), 1.0f / 3.0f);
-            playerRigidbody.transform.localScale = new Vector3(radius, radius, radius);
+            //radius = -Mathf.Pow(1.0f + ((1.0f / 5.0f) * numberOfKilled), 1.0f / 3.0f);
+            //playerRigidbody.transform.localScale = new Vector3(radius, radius, radius);
         }
     }
 
