@@ -12,10 +12,6 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject Purdu;
     public GameObject Sparrow;
     public GameObject Taipan;
-    public GameObject Oak;
-    public GameObject Palm;
-    public GameObject Poplar;
-    public GameObject Fir;
 
     public GameObject Water;
 

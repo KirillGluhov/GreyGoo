@@ -571,11 +571,11 @@ PrefabInstance:
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Gecko
       value: 
-      objectReference: {fileID: 274628149537914037, guid: d605f77184c8e73489837de162652766, type: 3}
+      objectReference: {fileID: 8680812296331728669, guid: e38f29210b74dd04699762fa3b0dd15c, type: 3}
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Purdu
       value: 
-      objectReference: {fileID: 350068546619499848, guid: 6a8343155fad8de4ca414b18e52958c1, type: 3}
+      objectReference: {fileID: 1573485460304607031, guid: 9c8a89f74b7e3f0468ed94f354666ca0, type: 3}
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Water
       value: 
@@ -587,19 +587,19 @@ PrefabInstance:
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Taipan
       value: 
-      objectReference: {fileID: 2356305705048964833, guid: 72977deb4a190bc4f80abb95cada6596, type: 3}
+      objectReference: {fileID: 6272182724707310853, guid: be9785a17772c0f41ab7e66674622c73, type: 3}
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Colobus
       value: 
-      objectReference: {fileID: 902868042052636698, guid: a135c3a11b725d44a9b169ede7cca4fb, type: 3}
+      objectReference: {fileID: 4023260575407934179, guid: 39ed48cac05f46e47925f5e582409b83, type: 3}
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Muskrat
       value: 
-      objectReference: {fileID: 6986013878971408031, guid: 39a8652169d5e894fa1b5b9fde74f1d3, type: 3}
+      objectReference: {fileID: 399993222197908220, guid: 784f3d1acbdcb1249a86f813d4b954d8, type: 3}
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Sparrow
       value: 
-      objectReference: {fileID: 2097550490263081308, guid: df512c4438f2412418ad5934fe043497, type: 3}
+      objectReference: {fileID: 9130260970498632068, guid: 64e13dcda05daf74b820b79718ab17d0, type: 3}
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Octaves.Array.size
       value: 3

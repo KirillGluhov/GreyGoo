@@ -2,71 +2,48 @@ using UnityEngine;
 
 public class AnimalNPC : MonoBehaviour
 {
-    public float moveSpeed = 0.25f;
-    public float avoidanceRadius = 5f;
-    public float fleeRadius = 10f;
-    public float minFleeDuration = 2f;
-    public float maxFleeDuration = 5f;
+    public float moveSpeed = 3f; // —корость движени€ NPC
+    public float fleeDistance = 5f; // ƒистанци€, на которой NPC начнет убегать от игрока
+    public float boundaryDistance = 10f; // ƒистанци€ от границы карты, на которой NPC будет измен€ть направление
 
-    private Transform player;
-    private bool isFleeing = false;
-    private float fleeTimer = 0f;
+    private Transform player; // “рансформ игрока
+    private Vector3 fleeDirection; // Ќаправление дл€ убегани€ от игрока
 
-    private void Awake()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
     {
-        if (isFleeing)
+        // ¬ычисл€ем направление движени€ NPC
+        Vector3 moveDirection = CalculateMoveDirection();
+
+        // ѕеремещаем NPC в заданном направлении
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+    }
+
+    private Vector3 CalculateMoveDirection()
+    {
+        // ¬ычисл€ем вектор направлени€ от NPC к игроку
+        Vector3 directionToPlayer = player.position - transform.position;
+
+        // ѕровер€ем, если игрок находитс€ достаточно близко, чтобы NPC начал убегать
+        if (directionToPlayer.magnitude < fleeDistance)
         {
-            FleeFromPlayer();
+            // ¬ычисл€ем направление убегани€ от игрока
+            fleeDirection = -directionToPlayer.normalized;
         }
         else
         {
-            CheckPlayerDistance();
+            // ѕровер€ем, если NPC находитс€ близко к границе карты
+            if (Mathf.Abs(transform.position.x) > boundaryDistance || Mathf.Abs(transform.position.z) > boundaryDistance)
+            {
+                // ¬ычисл€ем новое случайное направление движени€ внутри границы карты
+                fleeDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
+            }
         }
-    }
 
-    private void CheckPlayerDistance()
-    {
-        Vector3 direction = transform.position - player.position;
-        float distance = direction.magnitude;
-
-        if (distance < fleeRadius)
-        {
-            StartFleeing();
-        }
-    }
-
-    private void StartFleeing()
-    {
-        isFleeing = true;
-        fleeTimer = Random.Range(minFleeDuration, maxFleeDuration);
-    }
-
-    private void FleeFromPlayer()
-    {
-        fleeTimer -= Time.deltaTime;
-
-        if (fleeTimer <= 0f)
-        {
-            isFleeing = false;
-        }
-        else
-        {
-            Vector3 direction = transform.position - player.position;
-            Vector3 moveDirection = direction.normalized;
-            transform.position += moveDirection * moveSpeed * Time.deltaTime;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Chunk"))
-        {
-            transform.Rotate(Vector3.up, 180f);
-        }
+        return fleeDirection;
     }
 }
