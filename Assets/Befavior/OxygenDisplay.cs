@@ -5,30 +5,34 @@ using UnityEngine.UI;
 
 public class OxygenDisplay : MonoBehaviour
 {
-    public static float oxygenAmount = 100f;
     public float oxygenLossRate = 1f;
     public float oxygenGainRate = 2f;
     public Text oxygenText;
     private bool inWater = false;
 
+    private void Start()
+    {
+        Score.oxygenAmount = 100f;
+    }
+
     private void Update()
     {
         if (inWater)
         {
-            oxygenAmount -= oxygenLossRate * Time.deltaTime;
+            Score.oxygenAmount -= oxygenLossRate * Time.deltaTime;
             UpdateOxygenDisplay();
         }
         else
         {
-            oxygenAmount += oxygenGainRate * Time.deltaTime;
-            oxygenAmount = Mathf.Clamp(oxygenAmount, 0f, 100f);
+            Score.oxygenAmount += oxygenGainRate * Time.deltaTime;
+            Score.oxygenAmount = Mathf.Clamp(Score.oxygenAmount, 0f, 100f);
             UpdateOxygenDisplay();
         }
     }
 
     private void UpdateOxygenDisplay()
     {
-        oxygenText.text = "Oxygen: " + Mathf.RoundToInt(oxygenAmount).ToString();
+        oxygenText.text = "Oxygen: " + Mathf.RoundToInt(Score.oxygenAmount).ToString();
     }
 
     private void FixedUpdate()

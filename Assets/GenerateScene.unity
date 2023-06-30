@@ -176,7 +176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1395102038838377116, guid: c5d2274b79de3784bb3027cee8b2ae99, type: 3}
       propertyPath: nextScene
-      value: menu
+      value: Death Scene
       objectReference: {fileID: 0}
     - target: {fileID: 1395102038838377116, guid: c5d2274b79de3784bb3027cee8b2ae99, type: 3}
       propertyPath: hungryText
@@ -185,6 +185,10 @@ PrefabInstance:
     - target: {fileID: 1395102038838377116, guid: c5d2274b79de3784bb3027cee8b2ae99, type: 3}
       propertyPath: levelOfHungry
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395102038838377116, guid: c5d2274b79de3784bb3027cee8b2ae99, type: 3}
+      propertyPath: previousScene
+      value: menu
       objectReference: {fileID: 0}
     - target: {fileID: 2378692485179039738, guid: c5d2274b79de3784bb3027cee8b2ae99, type: 3}
       propertyPath: m_Name
