@@ -20,19 +20,12 @@ public class OxygenDisplay : MonoBehaviour
         if (inWater)
         {
             Score.oxygenAmount -= oxygenLossRate * Time.deltaTime;
-            UpdateOxygenDisplay();
         }
         else
         {
             Score.oxygenAmount += oxygenGainRate * Time.deltaTime;
             Score.oxygenAmount = Mathf.Clamp(Score.oxygenAmount, 0f, 100f);
-            UpdateOxygenDisplay();
         }
-    }
-
-    private void UpdateOxygenDisplay()
-    {
-        oxygenText.text = "Oxygen: " + Mathf.RoundToInt(Score.oxygenAmount).ToString();
     }
 
     private void FixedUpdate()

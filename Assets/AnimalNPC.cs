@@ -8,10 +8,15 @@ public class AnimalNPC : MonoBehaviour
 
     private Transform player; // Трансформ игрока
     private Vector3 fleeDirection; // Направление для убегания от игрока
+    private Rigidbody rb;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotationX;
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+
     }
 
     private void Update()

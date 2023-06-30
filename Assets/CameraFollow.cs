@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
     public float limit = 80; // ограничение вращения по Y
     public float zoom = 0.25f; // чувствительность при увеличении, колесиком мышки
     public float zoomMax = 10; // макс. увеличение
-    public float zoomMin = 0.5f; // мин. увеличение
+    public float zoomMin = 0f; // мин. увеличение
     private float X, Y;
 
     void Start()

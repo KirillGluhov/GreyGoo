@@ -19,7 +19,6 @@ public class GameWorld : MonoBehaviour
     public void Start()
     {
         mainCamera = Camera.main;
-
         Generator.Init();
         Generat(false, ViewRadius);
 
@@ -105,15 +104,10 @@ public class GameWorld : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
+            
             bool isDestroying = Input.GetMouseButtonDown(0);
 
-            ///
-            Vector3 mousePosition = Input.mousePosition;
-            Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.nearClipPlane));
-            Vector3 rayDirection = worldMousePosition - Camera.main.transform.position;
-            Ray ray = new Ray(Camera.main.transform.position, rayDirection);
-            ///
-
+            Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
 
             if (Physics.Raycast(ray, out var hitInfo))
             {
@@ -127,13 +121,22 @@ public class GameWorld : MonoBehaviour
                 {
                     blockCenter = hitInfo.point + hitInfo.normal * ChunkGenerator.BlockScale / 2;
                 }
+
+                //
+                Debug.Log("blockCenter: " + blockCenter);
+                //
                 
                 Vector3Int blockWorldPos = Vector3Int.FloorToInt(blockCenter / ChunkGenerator.BlockScale);
                 Vector2Int chunkPos = GetChunkContainingBlock(blockWorldPos);
 
+                //
+                Debug.Log("chunkPos: " + chunkPos);
+                Debug.Log("blockWorldPos: " + blockWorldPos);
+                //
+
                 if (ChunkDatas.TryGetValue(chunkPos, out ChunkData chunkData))
                 {
-                    var chunkOrigin = new Vector3Int(chunkPos.x , chunkPos.y) * ChunkGenerator.ChunkWidth;
+                    var chunkOrigin = new Vector3Int(chunkPos.x , 0 , chunkPos.y) * ChunkGenerator.ChunkWidth;
 
                     if (isDestroying)
                     {
@@ -143,6 +146,11 @@ public class GameWorld : MonoBehaviour
                     {
                         chunkData.Renderer.SpawnBlock(blockWorldPos - chunkOrigin);
                     }
+
+                    //
+                    Debug.Log("chunkOrigin: " + chunkOrigin);
+                    Debug.Log("blockWorldPos - chunkOrigin" + (blockWorldPos - chunkOrigin));
+                    //
                 }
             }
         }
