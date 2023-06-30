@@ -614,23 +614,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Octaves.Array.data[0].Frequency
-      value: 0.25
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Octaves.Array.data[1].Amplitude
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Octaves.Array.data[1].Frequency
-      value: 0.0333
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Octaves.Array.data[2].Amplitude
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2880334794685950640, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: Octaves.Array.data[2].Frequency
-      value: 0.04
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2880334794685950642, guid: 52e391a1c513036429de2d1fef9807dd, type: 3}
       propertyPath: player

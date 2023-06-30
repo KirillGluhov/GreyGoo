@@ -35,6 +35,41 @@ public class TerrainGenerator : MonoBehaviour
 
     public void Init()
     {
+        Random random = new Random();
+        int randomNumber = random.Next(0, (AboutChunksHeight.frequency.Length / 4));
+
+        Octaves = new NoiseOctaveSettings[]
+        {
+            new NoiseOctaveSettings
+            {
+                noiseType = FastNoiseLite.NoiseType.Perlin,
+                Frequency = AboutChunksHeight.frequency[randomNumber*4],
+                Amplitude = AboutChunksHeight.amplitude[randomNumber*4],
+            },
+
+            new NoiseOctaveSettings
+            {
+                noiseType = FastNoiseLite.NoiseType.Perlin,
+                Frequency = AboutChunksHeight.frequency[randomNumber*4+1],
+                Amplitude = AboutChunksHeight.amplitude[randomNumber*4+1]
+            },
+
+            new NoiseOctaveSettings
+            {
+                noiseType = FastNoiseLite.NoiseType.Perlin,
+                Frequency = AboutChunksHeight.frequency[randomNumber*4+2],
+                Amplitude = AboutChunksHeight.amplitude[randomNumber*4+2]
+            }
+        };
+
+        DomainWarp = new NoiseOctaveSettings
+        {
+            noiseType = FastNoiseLite.NoiseType.OpenSimplex2,
+            Frequency = AboutChunksHeight.frequency[randomNumber * 4+3],
+            Amplitude = AboutChunksHeight.amplitude[randomNumber * 4+3]
+        };
+
+
         octaveNoises = new FastNoiseLite[Octaves.Length];
 
         for (int i = 0; i < octaveNoises.Length; i++)
@@ -124,8 +159,6 @@ public class TerrainGenerator : MonoBehaviour
                         resultOfHeights[x, minHeight, z] = BlockType.Wood;
                         
                         generateTree(resultOfHeights, chooseAnimal, minHeight, x, z);
-                        //GameObject newOak = Instantiate(Oak, place, Quaternion.identity);
-                        //result.Add(newOak);
                     }
                 }
 

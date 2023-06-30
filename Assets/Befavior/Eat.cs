@@ -30,11 +30,19 @@ public class Eat : MonoBehaviour
     {
         if (Score.oxygenAmount <= 99f && Score.numberOfKilled > 0)
         {
-            hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString() + "\n" + "Current Score:: " + (Score.numberOfKilled * 100 - Score.numberOfDamage * 10).ToString() + "\n" + "Oxygen: " + Mathf.RoundToInt(Score.oxygenAmount).ToString();
+            hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString() + "\n" + "Current Score: " + (Score.numberOfKilled * 100 - Score.numberOfDamage * 10).ToString() + "\n" + "Oxygen: " + Mathf.RoundToInt(Score.oxygenAmount).ToString();
+        }
+        else if (Score.oxygenAmount <= 99f)
+        {
+            hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString() + "\n" + "Oxygen: " + Mathf.RoundToInt(Score.oxygenAmount).ToString();
+        }
+        else if (Score.numberOfKilled > 0)
+        {
+            hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString() + "\n" + "Current Score: " + (Score.numberOfKilled * 100 - Score.numberOfDamage * 10).ToString();
         }
         else
         {
-            hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString() + "\n" + "Current Score: " + (Score.numberOfKilled *100-Score.numberOfDamage *10).ToString();
+            hungryText.GetComponent<Text>().text = "Hungry: " + ((int)levelOfHungry).ToString();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
