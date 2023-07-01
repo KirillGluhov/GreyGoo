@@ -24,14 +24,14 @@ public class TerrainGenerator : MonoBehaviour
     [Serializable]
     public class NoiseOctaveSettings
     {
-        public FastNoiseLite.NoiseType noiseType;
+        public Noise.NoiseType noiseType;
         public float Frequency = 0.2f;
         public float Amplitude = 1;
     }
 
-    private FastNoiseLite[] octaveNoises;
+    private Noise[] octaveNoises;
 
-    private FastNoiseLite warpNoise;
+    private Noise warpNoise;
 
     public void Init()
     {
@@ -42,21 +42,21 @@ public class TerrainGenerator : MonoBehaviour
         {
             new NoiseOctaveSettings
             {
-                noiseType = FastNoiseLite.NoiseType.Perlin,
+                noiseType = Noise.NoiseType.Perlin,
                 Frequency = AboutChunksHeight.frequency[randomNumber*4],
                 Amplitude = AboutChunksHeight.amplitude[randomNumber*4],
             },
 
             new NoiseOctaveSettings
             {
-                noiseType = FastNoiseLite.NoiseType.Perlin,
+                noiseType = Noise.NoiseType.Perlin,
                 Frequency = AboutChunksHeight.frequency[randomNumber*4+1],
                 Amplitude = AboutChunksHeight.amplitude[randomNumber*4+1]
             },
 
             new NoiseOctaveSettings
             {
-                noiseType = FastNoiseLite.NoiseType.Perlin,
+                noiseType = Noise.NoiseType.Perlin,
                 Frequency = AboutChunksHeight.frequency[randomNumber*4+2],
                 Amplitude = AboutChunksHeight.amplitude[randomNumber*4+2]
             }
@@ -64,22 +64,22 @@ public class TerrainGenerator : MonoBehaviour
 
         DomainWarp = new NoiseOctaveSettings
         {
-            noiseType = FastNoiseLite.NoiseType.OpenSimplex2,
+            noiseType = Noise.NoiseType.OpenSimplex2,
             Frequency = AboutChunksHeight.frequency[randomNumber * 4+3],
             Amplitude = AboutChunksHeight.amplitude[randomNumber * 4+3]
         };
 
 
-        octaveNoises = new FastNoiseLite[Octaves.Length];
+        octaveNoises = new Noise[Octaves.Length];
 
         for (int i = 0; i < octaveNoises.Length; i++)
         {
-            octaveNoises[i] = new FastNoiseLite();
+            octaveNoises[i] = new Noise();
             octaveNoises[i].SetNoiseType(Octaves[i].noiseType);
             octaveNoises[i].SetFrequency(Octaves[i].Frequency);
         }
 
-        warpNoise = new FastNoiseLite();
+        warpNoise = new Noise();
         warpNoise.SetNoiseType(DomainWarp.noiseType);
         warpNoise.SetFrequency(DomainWarp.Frequency);
         warpNoise.SetDomainWarpAmp(DomainWarp.Amplitude);
